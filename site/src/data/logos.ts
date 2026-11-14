@@ -28,10 +28,10 @@ export const logos: LogoConcept[] = [
     bestFor: 'The national umbrella brand once a second city is in view.',
   },
   {
-    file: '04-greatest-assist-wordmark.svg',
-    name: 'The GOAT Promise',
+    file: '04-we-promise.svg',
+    name: 'We Promise',
     idea:
-      'The O in PROMISE is a GOAT: Greatest Of All Time, earned for opening a school, not for basketball. The tagline borrows one basketball word to make the point: the greatest assist of all time is a school.',
+      'A goat (Greatest Of All Time) stands in front of a basketball, with 23 stars shooting out of it in a symmetric burst. "We Promise" turns one person\'s promise into everyone\'s, and the tagline makes the point: the greatest assist of all time is a school.',
     bestFor: 'Campaign and fundraising materials, banners, social posts.',
   },
 ];
