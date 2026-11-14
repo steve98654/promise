@@ -29,9 +29,9 @@ export const logos: LogoConcept[] = [
   },
   {
     file: '04-greatest-assist-wordmark.svg',
-    name: 'The Greatest Assist',
+    name: 'The GOAT Promise',
     idea:
-      'The O in PROMISE becomes a rising sun over a book. The tagline borrows one basketball word to make the point: the greatest assist of all time is a school.',
+      'The O in PROMISE is a GOAT: Greatest Of All Time, earned for opening a school, not for basketball. The tagline borrows one basketball word to make the point: the greatest assist of all time is a school.',
     bestFor: 'Campaign and fundraising materials, banners, social posts.',
   },
 ];
