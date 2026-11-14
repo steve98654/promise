@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Promise Newark">
+  <section class="hero">
+    <p class="eyebrow">Starting in Newark, NJ. Growing across the USA.</p>
+    <h1>The greatest of all time, measured in kids who graduate.</h1>
+    <p class="lede">
+      LeBron James's greatest legacy isn't a ring. It's a public school in Akron that gives kids who
+      were falling behind a real path to college. This site holds the planning materials for bringing
+      that model to Newark first, and then helping it grow city by city.
+    </p>
+    <a class="button" href="/logos/">See the logo concepts</a>
+  </section>
+
+  <section class="workstreams">
+    <h2>What we're working on</h2>
+    <ul>
+      <li><strong>Marketing materials.</strong> Name and logo concepts, then a pitch deck.</li>
+      <li><strong>Planning committee.</strong> Led organizationally by Nicole Newman.</li>
+      <li><strong>Site search.</strong> Finding a building in Newark.</li>
+      <li><strong>Lessons learned.</strong> What worked and what didn't in Akron.</li>
+      <li><strong>Philanthropy budget.</strong> What it costs to launch and sustain.</li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 24px 0 40px; max-width: 760px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; font-size: 0.8rem; color: var(--brick); }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 8px 0 16px; }
+  .lede { font-size: 1.15rem; color: var(--muted); }
+  .button {
+    display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 8px;
+    background: var(--navy); color: var(--cream); text-decoration: none; font-weight: 700;
+  }
+  .workstreams ul { padding-left: 20px; }
+  .workstreams li { margin: 6px 0; }
+</style>

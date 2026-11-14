@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" width="600" height="480" role="img" aria-label="Promise Newark crown of pencils logo concept">
+<title>Promise Newark crown of pencils logo concept</title>
+<g transform="rotate(-16 300 250)"><rect x="285.0" y="130" width="30" height="106" fill="#F5B82E" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<line x1="300" y1="130" x2="300" y2="236" stroke="#12233F" stroke-width="2" opacity="0.35"/>
+<path d="M285.0,130 L300,96 L315.0,130 Z" fill="#FFF7E8" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<path d="M294.9,107.56 L300,96 L305.1,107.56 Z" fill="#12233F" stroke="#12233F" stroke-width="3" stroke-linejoin="round"/></g>
+<g transform="rotate(16 300 250)"><rect x="285.0" y="130" width="30" height="106" fill="#F5B82E" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<line x1="300" y1="130" x2="300" y2="236" stroke="#12233F" stroke-width="2" opacity="0.35"/>
+<path d="M285.0,130 L300,96 L315.0,130 Z" fill="#FFF7E8" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<path d="M294.9,107.56 L300,96 L305.1,107.56 Z" fill="#12233F" stroke="#12233F" stroke-width="3" stroke-linejoin="round"/></g>
+<g transform="rotate(0 300 250)"><rect x="285.0" y="96" width="30" height="140" fill="#F5B82E" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<line x1="300" y1="96" x2="300" y2="236" stroke="#12233F" stroke-width="2" opacity="0.35"/>
+<path d="M285.0,96 L300,62 L315.0,96 Z" fill="#FFF7E8" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<path d="M294.9,73.56 L300,62 L305.1,73.56 Z" fill="#12233F" stroke="#12233F" stroke-width="3" stroke-linejoin="round"/></g>
+<rect x="218" y="220" width="164" height="30" rx="6" fill="#B23A2B" stroke="#12233F" stroke-width="4"/>
+<circle cx="250" cy="235" r="5" fill="#F5B82E"/>
+<circle cx="300" cy="235" r="5" fill="#F5B82E"/>
+<circle cx="350" cy="235" r="5" fill="#F5B82E"/>
+<path d="M300,262 C267.8,248.7 231.0,246.8 208,254.4 L208,292.4 C231.0,284.8 267.8,286.7 300,300 Z" fill="#12233F" stroke="#12233F" stroke-width="2" stroke-linejoin="round"/>
+<path d="M300,262 C332.2,248.7 369.0,246.8 392,254.4 L392,292.4 C369.0,284.8 332.2,286.7 300,300 Z" fill="#12233F" stroke="#12233F" stroke-width="2" stroke-linejoin="round"/>
+<path d="M300,262 L300,300" stroke="#FFF7E8" stroke-width="2"/>
+<text x="300" y="378" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="64" letter-spacing="6" fill="#12233F">PROMISE</text>
+<line x1="150" y1="404" x2="222" y2="404" stroke="#F5B82E" stroke-width="4"/><line x1="378" y1="404" x2="450" y2="404" stroke="#F5B82E" stroke-width="4"/>
+<text x="300" y="413" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="26" letter-spacing="9" fill="#B23A2B">NEWARK</text>
+<text x="300" y="452" text-anchor="middle" font-family="Georgia, 'DejaVu Serif', serif" font-style="italic" font-size="19" fill="#12233F" opacity="0.8">The greatest legacy is a kid who keeps learning.</text>
+</svg>

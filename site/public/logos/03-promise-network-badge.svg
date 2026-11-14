@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" width="600" height="480" role="img" aria-label="The Promise Network badge logo concept">
+<title>The Promise Network badge logo concept</title>
+<defs><path id="ringTop" d="M132,240 A168,168 0 0 1 468,240"/><path id="ringBot" d="M118,240 A182,182 0 0 0 482,240"/></defs>
+<circle cx="300" cy="240" r="200" fill="#12233F"/>
+<circle cx="300" cy="240" r="154" fill="#FFF7E8"/>
+<circle cx="300" cy="240" r="192" fill="none" stroke="#F5B82E" stroke-width="3"/>
+<text font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="26" letter-spacing="8" fill="#FFF7E8"><textPath href="#ringTop" startOffset="50%" text-anchor="middle">THE PROMISE NETWORK</textPath></text>
+<text font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="17" letter-spacing="6" fill="#F5B82E"><textPath href="#ringBot" startOffset="50%" text-anchor="middle">NEWARK TO THE NATION</textPath></text>
+<circle cx="119" cy="240" r="5" fill="#F5B82E"/>
+<circle cx="481" cy="240" r="5" fill="#F5B82E"/>
+<path d="M378,226 Q291.0,183.0 204,200" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M378,226 Q309.0,229.0 240,292" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M378,226 Q335.0,162.0 292,158" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M378,226 Q348.0,246.0 318,326" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M378,226 Q280.0,212.0 182,258" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M378,226 Q374.0,238.0 370,310" fill="none" stroke="#B23A2B" stroke-width="3.5" stroke-dasharray="2 8" stroke-linecap="round"/>
+<circle cx="204" cy="200" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="240" cy="292" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="292" cy="158" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="318" cy="326" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="182" cy="258" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="370" cy="310" r="9" fill="#FFF7E8" stroke="#12233F" stroke-width="4"/>
+<circle cx="378" cy="226" r="30" fill="#F5B82E" opacity="0.3"/>
+<polygon points="378.0,200.0 384.5,217.1 402.7,218.0 388.5,229.4 393.3,247.0 378.0,237.0 362.7,247.0 367.5,229.4 353.3,218.0 371.5,217.1" fill="#F5B82E" stroke="#12233F" stroke-width="3.5" stroke-linejoin="round"/>
+<text x="378" y="186" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="13" letter-spacing="3" fill="#12233F">NEWARK</text>
+</svg>

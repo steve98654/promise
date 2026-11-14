@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Planning a Promise school in Newark, NJ, and beyond.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/logos/04-greatest-assist-wordmark.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand">Promise Newark</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/logos/">Logo concepts</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Planning draft. Not affiliated with or endorsed by the LeBron James Family Foundation.</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --navy: #12233f;
+    --gold: #f5b82e;
+    --brick: #b23a2b;
+    --cream: #fff7e8;
+    --ink: #1c2433;
+    --muted: #5b6475;
+    --card: #ffffff;
+    --border: #e7dcc6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.55;
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1, h2, h3 { color: var(--navy); line-height: 1.2; }
+  a { color: var(--brick); }
+  .site-header {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+    padding: 14px 16px; background: var(--navy);
+  }
+  .site-header a { color: var(--cream); text-decoration: none; font-weight: 600; }
+  .site-header .brand { color: var(--gold); letter-spacing: 0.04em; }
+  .site-header nav { display: flex; gap: 20px; }
+  .site-footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 24px 16px 40px; }
+</style>
