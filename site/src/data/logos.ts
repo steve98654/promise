@@ -31,7 +31,7 @@ export const logos: LogoConcept[] = [
     file: '04-we-promise.svg',
     name: 'We Promise',
     idea:
-      'A goat (Greatest Of All Time) stands in front of a basketball, with 23 stars shooting out of it in a symmetric burst. "We Promise" turns one person\'s promise into everyone\'s, and the tagline makes the point: the greatest assist of all time is a school.',
+      'A goat (Greatest Of All Time) stands in front of a basketball, with 23 stars shooting out of it in a symmetric burst. "We Promise" turns one person\'s promise into everyone\'s, and the tagline makes the point: the greatest assist of all time is a school. Colors mix the Cavaliers (wine, gold, navy) and the Heat (red, black, orange).',
     bestFor: 'Campaign and fundraising materials, banners, social posts.',
   },
 ];
