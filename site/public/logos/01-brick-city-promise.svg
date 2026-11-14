@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" width="600" height="480" role="img" aria-label="Brick City Promise logo concept">
+<title>Brick City Promise logo concept</title>
+<defs><clipPath id="door"><path d="M212,292 L212,200 A88,88 0 0 1 388,200 L388,292 Z"/></clipPath></defs>
+<path d="M212,292 L212,200 A88,88 0 0 1 388,200 L388,292 Z" fill="#12233F"/>
+<g clip-path="url(#door)">
+<line x1="300" y1="292" x2="195.2" y2="279.3" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="201.3" y2="254.6" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="213.1" y2="232.0" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="230.0" y2="213.0" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="250.9" y2="198.5" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="274.7" y2="189.5" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="300.0" y2="186.4" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="325.3" y2="189.5" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="349.1" y2="198.5" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="370.0" y2="213.0" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="386.9" y2="232.0" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="398.7" y2="254.6" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<line x1="300" y1="292" x2="404.8" y2="279.3" stroke="#F5B82E" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+<circle cx="300" cy="292" r="50" fill="#F5B82E"/>
+<circle cx="250" cy="140" r="2.5" fill="#FFF7E8"/>
+<circle cx="352" cy="128" r="2.5" fill="#FFF7E8"/>
+<circle cx="318" cy="160" r="2.5" fill="#FFF7E8"/>
+<circle cx="270" cy="175" r="2.5" fill="#FFF7E8"/>
+</g>
+<path d="M172.0,200.0 A128,128 0 0 1 179.7,156.2 L217.3,169.9 A88,88 0 0 0 212.0,200.0 Z" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M179.7,156.2 A128,128 0 0 1 201.9,117.7 L232.6,143.4 A88,88 0 0 0 217.3,169.9 Z" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M201.9,117.7 A128,128 0 0 1 236.0,89.1 L256.0,123.8 A88,88 0 0 0 232.6,143.4 Z" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M236.0,89.1 A128,128 0 0 1 277.8,73.9 L284.7,113.3 A88,88 0 0 0 256.0,123.8 Z" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M277.8,73.9 A128,128 0 0 1 322.2,73.9 L315.3,113.3 A88,88 0 0 0 284.7,113.3 Z" fill="#F5B82E" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M322.2,73.9 A128,128 0 0 1 364.0,89.1 L344.0,123.8 A88,88 0 0 0 315.3,113.3 Z" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M364.0,89.1 A128,128 0 0 1 398.1,117.7 L367.4,143.4 A88,88 0 0 0 344.0,123.8 Z" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M398.1,117.7 A128,128 0 0 1 420.3,156.2 L382.7,169.9 A88,88 0 0 0 367.4,143.4 Z" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<path d="M420.3,156.2 A128,128 0 0 1 428.0,200.0 L388.0,200.0 A88,88 0 0 0 382.7,169.9 Z" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3" stroke-linejoin="round"/>
+<rect x="172" y="200.0" width="40" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="172" y="223.0" width="20.0" height="23.0" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="192.0" y="223.0" width="20.0" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="172" y="246.0" width="40" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="172" y="269.0" width="20.0" height="23.0" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="192.0" y="269.0" width="20.0" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="388" y="200.0" width="40" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="388" y="223.0" width="20.0" height="23.0" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="408.0" y="223.0" width="20.0" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="388" y="246.0" width="40" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="388" y="269.0" width="20.0" height="23.0" fill="#8F2C20" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="408.0" y="269.0" width="20.0" height="23.0" fill="#B23A2B" stroke="#FFF7E8" stroke-width="3"/>
+<rect x="158" y="292" width="284" height="10" rx="3" fill="#12233F"/>
+<path d="M300,270 C278.3,258.1 253.5,256.4 238,263.2 L238,297.2 C253.5,290.4 278.3,292.1 300,304 Z" fill="#FFF7E8" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<path d="M300,270 C321.7,258.1 346.5,256.4 362,263.2 L362,297.2 C346.5,290.4 321.7,292.1 300,304 Z" fill="#FFF7E8" stroke="#12233F" stroke-width="4" stroke-linejoin="round"/>
+<text x="300" y="372" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="30" letter-spacing="10" fill="#12233F">BRICK CITY</text>
+<text x="300" y="428" text-anchor="middle" font-family="Georgia, 'DejaVu Serif', serif" font-weight="700" font-size="58" letter-spacing="4" fill="#B23A2B">Promise</text>
+<text x="300" y="458" text-anchor="middle" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="14" letter-spacing="4" fill="#12233F" opacity="0.75">NEWARK · NEW JERSEY</text>
+</svg>
