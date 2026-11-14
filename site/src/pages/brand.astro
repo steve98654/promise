@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { brandAssets, brandColors } from '../data/brand';
+---
+
+<Base title="Brand logos · We Promise" description="The We Promise logo set for the site and marketing materials.">
+  <h1>Brand logos</h1>
+  <p class="intro">
+    One logo, several shapes. Everything here comes from the We Promise mark: the GOAT in front of a
+    basketball with 23 stars shooting out, in Cavaliers and Heat colors. Pick the version that fits the
+    space; each one downloads as SVG (for the web and print) or PNG.
+  </p>
+
+  <div class="grid">
+    {brandAssets.map((a) => (
+      <article class="card">
+        <div class:list={['art', { dark: a.dark }]}>
+          <img src={`/brand/${a.base}.svg`} alt={`${a.name}`} loading="lazy" />
+        </div>
+        <div class="body">
+          <h2>{a.name}</h2>
+          <p>{a.use}</p>
+          <p class="links">
+            <a href={`/brand/${a.base}.svg`} download>SVG</a>
+            <a href={`/brand/${a.base}.png`} download>PNG</a>
+          </p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <section class="colors">
+    <h2>Colors</h2>
+    <ul>
+      {brandColors.map((c) => (
+        <li>
+          <span class="chip" style={`background:${c.hex}`}></span>
+          <span><strong>{c.name}</strong> {c.hex}<br /><small>{c.from}</small></span>
+        </li>
+      ))}
+    </ul>
+    <p class="note">Type is Inter Black for the name and Inter ExtraBold for the tagline. Outline the text in the SVGs before sending them to a printer.</p>
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: 760px; color: var(--muted); font-size: 1.05rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; margin-top: 28px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .art { background: var(--cream); border-bottom: 1px solid var(--border); height: 220px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .art.dark { background: #041e42; }
+  .art img { max-width: 100%; max-height: 100%; }
+  .body { padding: 14px 18px 18px; }
+  .body h2 { margin: 0 0 6px; font-size: 1.15rem; }
+  .body p { margin: 0 0 8px; color: var(--muted); }
+  .links { display: flex; gap: 16px; }
+  .colors { margin-top: 40px; }
+  .colors ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+  .colors li { display: flex; gap: 10px; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+  .chip { width: 40px; height: 40px; border-radius: 8px; flex: none; border: 1px solid rgba(0,0,0,0.1); }
+  .note { color: var(--muted); }
+</style>
