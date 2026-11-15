@@ -1,0 +1,179 @@
+---
+// Future Expansion: built from the expansion city files in the project folder
+// (expansion_sites/we_promise_23_sites.json and we_promise_expansion_meta.json),
+// copied into src/data/. Replace those two files to refresh the page.
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import sites from '../data/sites.json';
+import meta from '../data/expansion_meta.json';
+import { docs } from '../data/links';
+
+type Site = (typeof sites)[number];
+const blank = (v: unknown) => v === '' || v === null || v === undefined;
+const pctOf = (v: unknown) => (blank(v) ? '–' : `${v}%`);
+const countOf = (v: unknown) => (blank(v) ? '–' : Number(v).toLocaleString('en-US'));
+const waveName = (w: string) => w.replace(/ \(.*\)$/, '');
+
+const states = new Set(sites.map((s) => s.state));
+const regions = [...new Set(sites.map((s) => s.region))].map((r) => ({
+  region: r,
+  sites: sites.filter((s) => s.region === r).map((s) => s.city),
+}));
+const focusCounts = (needle: string) => sites.filter((s) => String(s.focus_population).includes(needle)).length;
+
+// Short "why this order" notes for each wave; waves without a note just list their sites.
+const waveWhy: Record<string, string> = {
+  'Wave 1': 'Highest need in each major group, plus Cleveland and the Bronx, which sit near Akron and Newark and can share staff and training.',
+  'Wave 2': 'Extends to the Navajo Nation, Texas, New England and the West Coast.',
+  'Wave 3': 'Completes national reach with the largest metros and the Southwest and Plains.',
+};
+const launchWaves = meta.waves.filter((w) => w.wave.startsWith('Wave'));
+const siteByCity = (c: string) => sites.find((s) => s.city === c);
+---
+
+<Base title="Future Expansion · We Promise" description="The prioritized plan to grow We Promise from Akron and Newark to 23 schools across America.">
+  <p class="eyebrow">Future expansion</p>
+  <h1>From one school to 23</h1>
+  <Draft updated={new Date(meta.updated + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} note={`City figures are ${meta.data_caveat.charAt(0).toLowerCase()}${meta.data_caveat.slice(1)}`} />
+
+  <p class="page-intro">
+    Twenty-three schools, a nod to LeBron's number. Akron (the original I Promise School) is site 1 and
+    Newark is site 2. The other 21 were chosen where a school can do the most for children from
+    underrepresented groups: Black, Hispanic, Native American and others, in every region of the country.
+  </p>
+
+  <div class="stats six">
+    <div class="stat"><div class="num">{sites.length}</div><div class="lbl">schools in the network</div></div>
+    <div class="stat"><div class="num">{states.size}</div><div class="lbl">states</div></div>
+    <div class="stat"><div class="num">{regions.length}</div><div class="lbl">regions</div></div>
+    <div class="stat"><div class="num">{launchWaves.length} waves</div><div class="lbl">after Newark</div></div>
+    <div class="stat"><div class="num">{focusCounts('Native')}</div><div class="lbl">Native American sites</div></div>
+    <div class="stat"><div class="num">{focusCounts('Hispanic')}</div><div class="lbl">sites focused on Hispanic families</div></div>
+  </div>
+
+  <section class="block">
+    <h2>How cities were chosen</h2>
+    <ul class="prose">
+      <li><strong>Scoring.</strong> {meta.scoring}</li>
+      <li><strong>Spread rules.</strong> {meta.spread_rules.map((r, i) => (i ? r.charAt(0).toLowerCase() + r.slice(1) : r)).join('; ')}.</li>
+      <li><strong>Regional reach picks.</strong> Where the rules left a region thin, the highest-reach city there was chosen. These are marked "Regional reach" below.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Priority order and launch waves</h2>
+    <div class="cards">
+      {launchWaves.map((w) => (
+        <div class="card wave">
+          <h3>{waveName(w.wave)} <span class="small">{w.years}</span></h3>
+          <ol class="wave-list">
+            {w.sites.map((c) => {
+              const s = siteByCity(c);
+              return <li>{c}{s && <>, {s.state} <span class="small">· {s.focus_population}</span></>}</li>;
+            })}
+          </ol>
+          {waveWhy[waveName(w.wave)] && <p class="small">{waveWhy[waveName(w.wave)]}</p>}
+        </div>
+      ))}
+    </div>
+    <p class="prose small">
+      {meta.wave_note} The budget assumes Newark opens in fall 2028 and the pitch says waves start once
+      Newark has a year of results, so these dates are expected to slip.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Coverage by region</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Region</th><th>Sites</th></tr></thead>
+        <tbody>{regions.map((r) => <tr><td><strong>{r.region}</strong></td><td>{r.sites.join(', ')}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>The 23 sites</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th class="num">#</th><th>Site</th><th>Wave</th><th>Focus</th>
+            <th class="num">Black</th><th class="num">Hispanic</th><th class="num">Native</th>
+            <th class="num">Under&shy;represented</th><th class="num">Child poverty</th><th class="num">Need score</th>
+            <th>Anchor district</th><th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sites.map((s: Site) => (
+            <tr class:list={{ home: s.rank <= 2 }}>
+              <td class="num">{s.rank}</td>
+              <td><strong>{s.city}, {s.state}</strong><span class="sub">{s.region}{s.selection === 'Regional reach' ? ' · regional reach' : ''}</span></td>
+              <td>{waveName(s.wave)}</td>
+              <td>{s.focus_population}</td>
+              <td class="num">{pctOf(s.pct_black)}</td>
+              <td class="num">{pctOf(s.pct_hispanic)}</td>
+              <td class="num">{pctOf(s.pct_native)}</td>
+              <td class="num">{pctOf(s.pct_underrepresented)}<span class="sub">{countOf(s.underrep_pop)}</span></td>
+              <td class="num">{pctOf(s.child_poverty_pct)}</td>
+              <td class="num">{blank(s.need_score) ? '–' : s.need_score}</td>
+              <td>{s.district}</td>
+              <td class="why">{s.rationale}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small">
+      Percentages are shares of residents. Underrepresented is the combined Black, Hispanic and Native
+      American share, with the number of people below it. Child poverty is for all children under 18 in the
+      place. Akron is left blank because it is the existing flagship, and Newark has no need score because it
+      is the pilot. {meta.data_caveat}{' '}
+      <a href={docs.sitesCsv} download>Download the data (CSV)</a>.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Alternates, next in line</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>City</th><th>Region</th><th>Focus</th><th class="num">Under&shy;represented</th><th class="num">Child poverty</th><th class="num">Need score</th></tr></thead>
+        <tbody>
+          {meta.alternates.map((a) => (
+            <tr>
+              <td><strong>{a.city}, {a.state}</strong></td><td>{a.region}</td><td>{a.focus_population}</td>
+              <td class="num">{pctOf(a.pct_underrepresented)}</td><td class="num">{pctOf(a.child_poverty_pct)}</td><td class="num">{a.need_score}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Most alternates scored well but were held back by the spread rules (for example a second New Jersey site or a third site in a state).</p>
+  </section>
+
+  <section class="block">
+    <h2>Data to pull before the pitch</h2>
+    <ol class="prose">
+      <li>Verify every row on data.census.gov (tables DP05 and S1701) and add child poverty by race (B17020B, B17020I, B17020C).</li>
+      <li>Add district graduation rates and chronic absenteeism from state report cards and NCES.</li>
+      <li>Start conversations with the Oglala Sioux Tribe and Navajo Nation education departments before naming those sites publicly.</li>
+      <li>Map existing LeBron James Family Foundation, NBA team, HBCU, Hispanic-serving and tribal college partners in each city.</li>
+    </ol>
+    <p class="small">
+      Sources: <a href="https://data.census.gov/">U.S. Census Bureau, ACS 2019-2023</a>;
+      <a href="https://nces.ed.gov/ccd/">NCES Common Core of Data</a>; <a href="https://ipromise.school/">I Promise School, Akron</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .stats.six { grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+  .wave { border-top: 5px solid var(--gold); }
+  .wave h3 .small { font-weight: 500; }
+  .wave-list { margin: 6px 0 10px; padding-left: 20px; }
+  .wave-list li { margin: 3px 0; }
+  tr.home td { background: #fff1cf !important; }
+  table.data { font-size: 0.84rem; }
+  .sub { display: block; color: var(--muted); font-size: 0.76rem; font-weight: 400; }
+  td.why { min-width: 260px; }
+</style>
