@@ -13,3 +13,10 @@ Every page asks for a password (HTTP basic auth; any username works). The passwo
 - Or CLI: `npx wrangler secret put SITE_PASSWORD --name promise`
 
 To change the password, update that secret. If the secret is missing, the site shows a "locked" message instead of going public. For local testing, put `SITE_PASSWORD=...` in a `.dev.vars` file (gitignored) and run `npx wrangler dev` after building the site.
+
+## Cloudflare deploy settings
+
+Worker `promise`, production branch `main`, root directory `/`.
+
+- Build command: `cd site && npm ci && npm run build`
+- Deploy command: `npx wrangler deploy` (reads `wrangler.jsonc` at the repo root; do not add `--assets`, which skips the password Worker)
