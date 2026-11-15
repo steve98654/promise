@@ -11,17 +11,23 @@ import Base from '../layouts/Base.astro';
       were falling behind a real path to college. This site holds the planning materials for bringing
       that model to Newark first, and then helping it grow city by city.
     </p>
-    <a class="button" href="/brand/">See the brand logos</a>
+    <div class="hero-actions">
+      <a class="button" href="/committee/">Meet the planning committee</a>
+      <a class="button alt" href="/documents/">Read the planning drafts</a>
+    </div>
   </section>
 
   <section class="workstreams">
     <h2>What we're working on</h2>
     <ul>
-      <li><strong>Marketing materials.</strong> Name and logo concepts, then a pitch deck.</li>
-      <li><strong>Planning committee.</strong> Led organizationally by Nicole Newman.</li>
+      <li><strong><a href="/committee/">Planning committee.</a></strong> Nine seats, led organizationally by Nicole Newman.</li>
+      <li><strong><a href="/plan/">Foundation and steering plan.</a></strong> Mission, school model, the Promise Pathway and the roadmap to July 2027.</li>
+      <li><strong><a href="/pitch/">Foundation one-pager.</a></strong> The ask to the LeBron James Family Foundation.</li>
+      <li><strong><a href="/budget/">Philanthropy budget.</a></strong> What it costs to launch in fall 2028 and sustain for five years.</li>
+      <li><strong><a href="/sites/">23 sites.</a></strong> Newark first, then 21 more cities in three waves.</li>
       <li><strong>Site search.</strong> Finding a building in Newark.</li>
       <li><strong>Lessons learned.</strong> What worked and what didn't in Akron.</li>
-      <li><strong>Philanthropy budget.</strong> What it costs to launch and sustain.</li>
+      <li><strong><a href="/brand/">Marketing materials.</a></strong> The We Promise logo set, then a pitch deck.</li>
     </ul>
   </section>
 </Base>
@@ -35,6 +41,8 @@ import Base from '../layouts/Base.astro';
     display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 8px;
     background: var(--navy); color: var(--cream); text-decoration: none; font-weight: 700;
   }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .button.alt { background: var(--gold); color: var(--navy); }
   .workstreams ul { padding-left: 20px; }
   .workstreams li { margin: 6px 0; }
 </style>

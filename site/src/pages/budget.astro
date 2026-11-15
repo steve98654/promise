@@ -1,0 +1,200 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import budget from '../data/budget.json';
+import { budgetSheet, docs, money, millions, pct, thousands } from '../data/links';
+
+type Cell = number | string | null;
+const summary = Object.fromEntries(budget.summary.map((s) => [s.label, s.value as number]));
+
+// How each Budget-sheet row should be displayed.
+const kind = (label: string, values: Cell[]) => {
+  if (values.every((v) => v === null)) return 'section';
+  if (label === 'Grades served') return 'text';
+  if (label.startsWith('Students') || label.includes('(FTE)')) return 'count';
+  if (label.startsWith('Cost escalator')) return 'factor';
+  if (label.startsWith('Philanthropy share')) return 'pct';
+  if (label.startsWith('Philanthropy per student')) return 'dollars';
+  return 'money';
+};
+const fmt = (k: string, v: Cell) => {
+  if (v === null || v === '') return '';
+  if (typeof v === 'string') return v;
+  if (k === 'count') return v.toLocaleString('en-US');
+  if (k === 'factor') return v.toFixed(3);
+  if (k === 'pct') return pct(v);
+  if (k === 'dollars') return money(v);
+  return thousands(v);
+};
+const isTotal = (label: string) => label.startsWith('Subtotal') || label.startsWith('TOTAL');
+
+const fmtInput = (v: number | string | null, unit: string | null) => {
+  if (v === null) return '';
+  if (typeof v === 'string') return v;
+  if (unit && unit.startsWith('%')) return pct(v);
+  return money(v);
+};
+
+const areaMax = Math.max(...budget.areas.map((a) => a.value as number));
+---
+
+<Base title="5-year budget · We Promise" description="Five-year philanthropy budget estimate for We Promise Newark.">
+  <p class="eyebrow">Philanthropy budget</p>
+  <h1>What it costs to launch and sustain We Promise Newark</h1>
+  <Draft
+    updated="14 Nov 2026"
+    note="All figures are planning estimates. The budget assumes Newark opens in fall 2028 (startup year 2027-28); no funder has been approached."
+  />
+
+  <div class="live">
+    <div>
+      <h2>The live budget is the Google Sheet</h2>
+      <p>
+        The team edits the budget together in Google Sheets, and that sheet is the source of truth. The
+        tables below are a snapshot from 14 Nov 2026 and can fall behind it.
+      </p>
+    </div>
+    <div class="actions">
+      <a class="button gold" href={budgetSheet}>Open the live budget</a>
+      <a class="button" href={docs.budgetXlsx} download>Download snapshot (.xlsx)</a>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">{millions(summary['Startup philanthropy (Year 0)'])}</div><div class="lbl">Startup year, 2027-28</div></div>
+    <div class="stat"><div class="num">{millions(summary['Year 1 philanthropy (240 students)'])}</div><div class="lbl">Year 1, 240 students</div></div>
+    <div class="stat"><div class="num">{millions(summary['Year 5 philanthropy (720 students)'])}</div><div class="lbl">Year 5, 720 students</div></div>
+    <div class="stat"><div class="num">{millions(summary['Philanthropy incl. startup (6 years)'])}</div><div class="lbl">Six-year philanthropy total</div></div>
+    <div class="stat"><div class="num">{money(Math.round(summary['Average philanthropy per student-year'] / 100) * 100)}</div><div class="lbl">Per student per year, on top of the public base</div></div>
+    <div class="stat"><div class="num">{millions(summary['LJFF ask at target share, incl. startup'])}</div><div class="lbl">Foundation ask at 40%</div></div>
+  </div>
+
+  <section class="block">
+    <h2>How to read it</h2>
+    <ul class="prose">{budget.notes.map((n) => <li>{n}</li>)}</ul>
+    <p class="prose small">
+      For context, the public base from Newark Public Schools over Years 1 to 5 is about
+      {' '}{millions(summary['Public base funding, Years 1-5 (NPS, context)'])}, so philanthropy is about
+      {' '}{pct(summary['Philanthropy as share of total school cost, Y1-Y5'])} of the school's total cost.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Where the money goes</h2>
+    <p class="prose small">Six-year philanthropy by area, including the startup year.</p>
+    <div class="bars">
+      {budget.areas.map((a) => (
+        <div class="bar-row">
+          <span class="bar-label">{a.label}</span>
+          <span class="bar-track"><i style={`width:${((a.value as number) / areaMax) * 100}%`}></i></span>
+          <span class="bar-val">{millions(a.value as number)} · {pct(a.share as number)}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Budget by year</h2>
+    <p class="prose small">Dollars in thousands, escalated 3% a year from 2027-28 dollars.</p>
+    <div class="table-wrap">
+      <table class="data budget">
+        <thead>
+          <tr><th>Line item</th>{budget.years.map((y) => <th class="num">{y}</th>)}</tr>
+        </thead>
+        <tbody>
+          {budget.budgetRows.map((r) => {
+            const k = kind(r.label, r.values as Cell[]);
+            if (k === 'section') return <tr class="section"><td colspan={budget.years.length + 1}>{r.label}</td></tr>;
+            return (
+              <tr class:list={{ total: isTotal(r.label), grand: r.label.startsWith('TOTAL') }}>
+                <td>{r.label}{r.driver && <span class="driver">{r.driver}</span>}</td>
+                {(r.values as Cell[]).map((v) => <td class="num">{fmt(k, v)}</td>)}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Who pays</h2>
+    <p class="prose small">Funding mix targets, not commitments. No funder, including the Foundation, has been approached.</p>
+    <div class="table-wrap">
+      <table class="data budget">
+        <thead>
+          <tr><th>Source</th><th class="num">Share</th>{budget.years.map((y) => <th class="num">{y}</th>)}</tr>
+        </thead>
+        <tbody>
+          {budget.funding.map((f) => (
+            <tr class:list={{ total: f.label === 'Total philanthropy' }}>
+              <td>{f.label}</td>
+              <td class="num">{pct(f.share as number)}</td>
+              {(f.values as number[]).map((v) => <td class="num">{thousands(v)}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Not counted: in-kind support from colleges, hospitals and the city (space, staff time, services). Track separately once offered.</p>
+  </section>
+
+  <section class="block">
+    <h2>Assumptions</h2>
+    <p class="prose small">These are the inputs in the Google Sheet. Change them there and every total updates.</p>
+    {budget.assumptions.map((sec) => (
+      <details>
+        <summary>{sec.section}</summary>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Input</th><th class="num">Value</th><th>Basis</th></tr></thead>
+            <tbody>
+              {sec.items.filter((i) => i.basis).map((i) => (
+                <tr>
+                  <td>{i.label}</td>
+                  <td class="num">{fmtInput(i.value as number, i.unit)}{i.unit && !i.unit.startsWith('%') && i.unit !== '$' ? <span class="unit"> {i.unit.replace('$', '')}</span> : ''}</td>
+                  <td>{i.basis}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    ))}
+  </section>
+
+  <section class="block">
+    <h2>Sources</h2>
+    <ul class="prose sources">
+      {budget.sources.map((s) => (
+        <li><a href={s.url}>{s.title}</a><br /><span class="small">{s.used}</span></li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .live {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between;
+    background: var(--card); border: 2px solid var(--navy); border-radius: 12px; padding: 14px 20px;
+  }
+  .live h2 { margin: 0 0 4px; font-size: 1.2rem; }
+  .live p { margin: 0; color: var(--muted); max-width: 560px; }
+  .live .actions { margin: 0; }
+  .bars { display: grid; gap: 8px; max-width: 820px; }
+  .bar-row { display: grid; grid-template-columns: minmax(120px, 240px) 1fr auto; gap: 12px; align-items: center; font-size: 0.92rem; }
+  .bar-track { height: 16px; background: #efe5d2; border-radius: 4px; overflow: hidden; }
+  .bar-track i { display: block; height: 100%; background: var(--navy); border-radius: 4px; }
+  .bar-val { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+  table.budget { font-size: 0.86rem; }
+  table.budget td:first-child { min-width: 240px; }
+  .driver { display: block; color: var(--muted); font-size: 0.78rem; }
+  tr.section td { background: #efe5d2 !important; font-weight: 800; color: var(--navy); }
+  tr.total td { font-weight: 700; border-top: 2px solid var(--navy); }
+  tr.grand td { background: var(--gold) !important; color: var(--navy); }
+  .unit { color: var(--muted); font-size: 0.8rem; }
+  details { margin: 10px 0; }
+  summary { cursor: pointer; font-weight: 700; color: var(--navy); }
+  .sources li { margin: 10px 0; }
+  @media (max-width: 560px) { .bar-row { grid-template-columns: 1fr auto; } .bar-track { grid-column: 1 / -1; grid-row: 2; } }
+</style>

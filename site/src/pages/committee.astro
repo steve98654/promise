@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import { docs, driveFolder } from '../data/links';
+
+const seats = [
+  {
+    seat: 'Chair / organizational lead',
+    duties: 'Heads the effort from an organizational perspective: sets the agenda and timeline, runs meetings, breaks ties, and is the single point of contact for LJFF.',
+    who: 'Nicole Newman',
+    filled: true,
+  },
+  {
+    seat: 'Education and district',
+    duties: 'Designs the school model: grades, calendar, STEM focus and staffing. Works out district partnership versus charter. Liaises with Newark Public Schools and the NJ Department of Education.',
+    who: 'Former principal or NPS administrator; education policy expert',
+  },
+  {
+    seat: 'Family and community',
+    duties: 'Runs listening sessions in the wards, builds parent and resident support, and makes sure the plan reflects what Newark families want.',
+    who: 'Parent organizer, ward leader, faith or block association leader',
+  },
+  {
+    seat: 'Wraparound services',
+    duties: 'Plans the supports that define the model: family resource center, food pantry, health and mental health, adult GED and job training, and housing help. Lines up service partners.',
+    who: 'Leader from a Newark hospital, social services nonprofit or Rutgers-Newark',
+  },
+  {
+    seat: 'Site and facilities',
+    duties: 'Builds site criteria, scouts and scores sites, estimates renovation or build costs, and checks zoning.',
+    who: 'Real estate or architecture professional; city economic development',
+  },
+  {
+    seat: 'Finance and philanthropy',
+    duties: 'Builds the startup and five-year operating budget, separates public funding from philanthropy, and identifies local co-funders so LJFF is not asked to carry it alone.',
+    who: 'Nonprofit CFO, foundation program officer, banker',
+  },
+  {
+    seat: 'Research and lessons',
+    duties: "Studies Akron's results, what worked and what did not, and turns them into design choices and risks.",
+    who: 'Education researcher; Rutgers or NJIT faculty',
+  },
+  {
+    seat: 'Legal and governance',
+    duties: 'Advises on structure (district school, charter or nonprofit partner), contracts, MOUs and the long-term governance model.',
+    who: 'Education or nonprofit attorney, often pro bono',
+  },
+  {
+    seat: 'Communications and pitch',
+    duties: 'Owns the story, the pitch deck, and press and stakeholder messaging; manages the outreach path to LJFF.',
+    who: 'Communications or marketing professional',
+  },
+];
+
+const steps = [
+  {
+    n: 1, title: 'Form the committee', goal: 'Seat the people who will do the work.',
+    work: 'Finalize the seats, name candidates for each, and draft a one-page charter and invitation.',
+    deliverable: 'Committee charter, seat roster and invitations sent.',
+  },
+  {
+    n: 2, title: 'Learn from Akron and define the model', goal: "Decide what kind of school Newark gets, informed by Akron's experience.",
+    work: 'Write a lessons-learned brief on the Akron I Promise School and choose the school model, structure and grades.',
+    deliverable: 'Lessons-learned brief and a one-page school model.',
+  },
+  {
+    n: 3, title: 'Find a site and build the budget', goal: 'Know where the school goes and what it costs.',
+    work: 'Score candidate sites against agreed criteria, and build startup and operating budgets with co-funders identified.',
+    deliverable: 'Site recommendation and a philanthropy budget.',
+  },
+  {
+    n: 4, title: "Build the pitch to LeBron's foundation", goal: 'Put a proposal in front of the LeBron James Family Foundation.',
+    work: 'Turn the work into a deck and written proposal, and map the path to reach LJFF.',
+    deliverable: 'Pitch deck, proposal and outreach plan.',
+  },
+];
+---
+
+<Base title="Planning committee · We Promise" description="Who sits on the We Promise Newark planning committee, what each seat owns, and the four-step plan.">
+  <p class="eyebrow">Planning committee</p>
+  <h1>The people who turn the idea into a proposal</h1>
+  <Draft updated="7 Nov 2026" pdf={docs.committee} />
+
+  <p class="page-intro">
+    The planning committee turns the idea of a We Promise school in Newark into a proposal the LeBron
+    James Family Foundation can say yes to. It is advisory and time-limited, running roughly 6 to 9
+    months, and it is not the school's eventual board.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">Nicole Newman</div><div class="lbl">Chair and organizational lead</div></div>
+    <div class="stat"><div class="num">9 seats</div><div class="lbl">or 5 in a lean start</div></div>
+    <div class="stat"><div class="num">6 to 9 months</div><div class="lbl">advisory term</div></div>
+    <div class="stat"><div class="num">4 steps</div><div class="lbl">ending in the pitch to LJFF</div></div>
+  </div>
+
+  <p class="callout">
+    The committee owns four outputs: a school model, a site recommendation, a lessons-learned brief from
+    Akron, and a philanthropy budget. Together they become the pitch.
+  </p>
+
+  <section class="block">
+    <h2>Seats and responsibilities</h2>
+    <p class="prose">
+      Nicole Newman leads the committee from an organizational perspective as its chair. The chair convenes
+      eight seat leads, each owning one part of the proposal. Only the chair seat is filled so far; the
+      right-hand column describes who might fill each open seat.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Seat</th><th>Responsibilities</th><th>Who might fill it</th></tr></thead>
+        <tbody>
+          {seats.map((s) => (
+            <tr>
+              <td><strong>{s.seat}</strong></td>
+              <td>{s.duties}</td>
+              <td>{s.filled ? <strong>{s.who}</strong> : <span class="open">Open · {s.who}</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Lean start with five seats</h3>
+    <p class="prose">
+      To begin with five people, combine Education with Legal and governance, Family and community with
+      Communications, and Site with Finance. The chair and Wraparound services stay as their own seats, and
+      Research and lessons is shared across the group.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>How the committee works</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Every member agrees to</h3>
+        <ul>
+          <li>Attend biweekly meetings and do the work for their seat between them.</li>
+          <li>Keep deliberations confidential until the pitch is ready.</li>
+          <li>Disclose conflicts of interest, especially on sites and vendors.</li>
+          <li>Represent Newark residents, not personal or institutional agendas.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>How decisions get made</h3>
+        <p>
+          Each lead drafts recommendations for their area. The full committee discusses them and aims for
+          consensus, and the chair decides when consensus cannot be reached.
+        </p>
+        <p><strong>Big calls (the school model, the site and the budget ask) get a recorded vote.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>The four-step plan</h2>
+    <p class="prose">Each step ends in a deliverable that feeds the pitch.</p>
+    <div class="cards steps">
+      {steps.map((s) => (
+        <div class="card step">
+          <p class="step-n">Step {s.n}</p>
+          <h3>{s.title}</h3>
+          <p><strong>Goal.</strong> {s.goal}</p>
+          <p><strong>Work.</strong> {s.work}</p>
+          <p><strong>Deliverable.</strong> {s.deliverable}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Beyond Newark</h2>
+    <p class="prose">
+      Newark is site 2 of a planned network of 23 We Promise schools, with Akron as site 1. Every Newark
+      decision should be written down as a playbook another city can reuse. See the{' '}
+      <a href="/sites/">23 sites</a> for the full list and launch waves.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Next steps</h2>
+    <ol class="prose">
+      <li>Nicole Newman to confirm the seat list and whether to start with nine seats or five.</li>
+      <li>Name candidates for each seat.</li>
+      <li>Draft the committee charter and invitation.</li>
+      <li>Review the 23-site expansion list and confirm the wave order.</li>
+    </ol>
+    <p class="small">
+      The committee's charter, decision rights and workstreams are in the <a href="/plan/#charter">foundation and steering plan</a>.
+      Working files live in the <a href={driveFolder}>shared Google Drive folder</a>.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .stat .num { font-size: 1.3rem; }
+  .open { color: var(--muted); }
+  .steps { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .step { border-top: 5px solid var(--brick); }
+  .step-n { margin: 0; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 800; color: var(--brick); }
+</style>

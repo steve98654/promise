@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import { budgetSheet, docs, driveFolder, logosFolder } from '../data/links';
+
+const items = [
+  { title: 'Planning committee plan', what: 'Seats, responsibilities, how decisions get made, and the four-step plan.', page: '/committee/', file: docs.committee, type: 'PDF', updated: '7 Nov 2026' },
+  { title: 'Foundation and steering plan', what: 'Mission, promises, Promise Pathway, school model, governance, workstreams and roadmap.', page: '/plan/', file: docs.steering, type: 'PDF', updated: '14 Nov 2026' },
+  { title: 'Foundation one-pager', what: 'The one-page pitch to the LeBron James Family Foundation.', page: '/pitch/', file: docs.onePager, type: 'PDF', updated: '14 Nov 2026' },
+  { title: '5-year budget (snapshot)', what: 'Startup and five-year philanthropy budget with assumptions and funding mix. The live version is the Google Sheet.', page: '/budget/', file: docs.budgetXlsx, type: 'XLSX', updated: '14 Nov 2026', live: budgetSheet },
+  { title: '23 expansion sites', what: 'The ranked list of 23 cities, scores, districts and launch waves.', page: '/sites/', file: docs.sitesCsv, type: 'CSV', updated: '14 Nov 2026' },
+];
+---
+
+<Base title="Documents · We Promise" description="Planning drafts, budget and shared Google Drive folder for We Promise Newark.">
+  <p class="eyebrow">Documents</p>
+  <h1>Planning drafts and shared files</h1>
+  <p class="page-intro">
+    Every document is a discussion draft. Read it on the site, download the file, or work on the shared
+    copies in Google Drive.
+  </p>
+
+  <div class="drive">
+    <div>
+      <h2>Shared Google Drive</h2>
+      <p>The team's working folder for shared documents, the live budget and the official logos.</p>
+    </div>
+    <div class="actions">
+      <a class="button gold" href={driveFolder}>Open the shared folder</a>
+      <a class="button" href={budgetSheet}>Live budget sheet</a>
+      <a class="button" href={logosFolder}>Logos folder</a>
+    </div>
+  </div>
+
+  <div class="cards">
+    {items.map((d) => (
+      <article class="card doc">
+        <p class="type">{d.type} · updated {d.updated}</p>
+        <h3>{d.title}</h3>
+        <p>{d.what}</p>
+        <p class="links">
+          <a href={d.page}>Read on the site</a>
+          <a href={d.file} download>Download {d.type}</a>
+          {d.live && <a href={d.live}>Edit in Google Sheets</a>}
+        </p>
+      </article>
+    ))}
+  </div>
+  <p class="small">
+    The PDFs are preview builds of the LaTeX drafts. Access to the Google Drive links depends on your
+    Google account's sharing permissions.
+  </p>
+</Base>
+
+<style>
+  .drive {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between;
+    background: var(--navy); color: var(--cream); border-radius: 12px; padding: 16px 20px; margin: 20px 0 8px;
+  }
+  .drive h2 { color: var(--gold); margin: 0 0 4px; font-size: 1.2rem; }
+  .drive p { margin: 0; }
+  .drive .actions { margin: 0; }
+  .drive .button:not(.gold) { background: transparent; border: 1px solid var(--cream); }
+  .doc { border-top: 5px solid var(--brick); display: flex; flex-direction: column; }
+  .type { margin: 0; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brick); }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: auto !important; padding-top: 8px; font-weight: 600; }
+</style>

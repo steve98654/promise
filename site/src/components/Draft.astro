@@ -1,0 +1,30 @@
+---
+interface Props {
+  updated?: string;
+  pdf?: string;
+  note?: string;
+}
+const { updated = '14 Nov 2026', pdf, note } = Astro.props;
+---
+
+<aside class="draft-banner">
+  <span class="tag">Draft</span>
+  <span class="text">
+    Discussion draft, last updated {updated}. {note ?? 'Proposals and estimates for committee review, not decisions.'}
+  </span>
+  {pdf && <a href={pdf} download>Download PDF</a>}
+</aside>
+
+<style>
+  .draft-banner {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
+    background: #fff1cf; border: 1px solid var(--gold); border-radius: 10px;
+    padding: 10px 14px; margin: 0 0 24px; font-size: 0.92rem;
+  }
+  .tag {
+    background: var(--brick); color: #fff; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; font-size: 0.72rem; padding: 3px 8px; border-radius: 5px;
+  }
+  .text { flex: 1 1 260px; color: var(--ink); }
+  a { font-weight: 700; white-space: nowrap; }
+</style>

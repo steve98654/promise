@@ -1,0 +1,1103 @@
+{
+ "years": [
+  "Y0 2027-28 (startup)",
+  "Y1 2028-29",
+  "Y2 2029-30",
+  "Y3 2030-31",
+  "Y4 2031-32",
+  "Y5 2032-33",
+  "Y1-Y5 total",
+  "Total incl. startup"
+ ],
+ "budgetRows": [
+  {
+   "label": "Grades served",
+   "driver": "input",
+   "values": [
+    "planning",
+    "3-4",
+    "3-5",
+    "3-6",
+    "3-7",
+    "3-8",
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Students enrolled",
+   "driver": "input: Akron opened with 240 in grades 3-4 and added a grade a year",
+   "values": [
+    0,
+    240,
+    360,
+    480,
+    600,
+    720,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Cost escalator (x 2027-28 $)",
+   "driver": "from escalator",
+   "values": [
+    1,
+    1.03,
+    1.0609,
+    1.092727,
+    1.12550881,
+    1.1592740743,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Additional teachers (FTE)",
+   "driver": "students / ratio, rounded up",
+   "values": [
+    0,
+    4,
+    6,
+    8,
+    10,
+    12,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Added counselors / social workers (FTE)",
+   "driver": "students / ratio, rounded up",
+   "values": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "A. One-time startup (Year 0)",
+   "driver": null,
+   "values": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Building renovation, furnishing, FRC and pantry",
+   "driver": "lump sum",
+   "values": [
+    2500000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2500000
+   ]
+  },
+  {
+   "label": "Technology and network wiring",
+   "driver": "lump sum",
+   "values": [
+    400000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    400000
+   ]
+  },
+  {
+   "label": "Pre-opening staff",
+   "driver": "lump sum",
+   "values": [
+    450000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    450000
+   ]
+  },
+  {
+   "label": "Student recruitment and family outreach",
+   "driver": "lump sum",
+   "values": [
+    150000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    150000
+   ]
+  },
+  {
+   "label": "Curriculum, STEM labs, staff training",
+   "driver": "lump sum",
+   "values": [
+    300000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    300000
+   ]
+  },
+  {
+   "label": "Legal, fiscal sponsor, planning",
+   "driver": "lump sum",
+   "values": [
+    150000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    150000
+   ]
+  },
+  {
+   "label": "Startup contingency",
+   "driver": "% of startup",
+   "values": [
+    395000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    395000
+   ]
+  },
+  {
+   "label": "Subtotal A: startup",
+   "driver": null,
+   "values": [
+    4345000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4345000
+   ]
+  },
+  {
+   "label": "B. Extended learning",
+   "driver": null,
+   "values": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Additional teachers (classes capped near 23)",
+   "driver": "FTE x loaded cost",
+   "values": [
+    0,
+    515000,
+    795675,
+    1092727,
+    1406886.0125,
+    1738911.11145,
+    5549199.12395,
+    5549199.12395
+   ]
+  },
+  {
+   "label": "Extra hour of school plus summer program",
+   "driver": "per student",
+   "values": [
+    0,
+    296640,
+    458308.8,
+    629410.752,
+    810366.3432,
+    1001612.8001952,
+    3196338.6953952,
+    3196338.6953952
+   ]
+  },
+  {
+   "label": "After-school, tutoring, substitute coverage",
+   "driver": "per student",
+   "values": [
+    0,
+    197760,
+    305539.2,
+    419607.168,
+    540244.2288,
+    667741.8667968,
+    2130892.4635968,
+    2130892.4635968
+   ]
+  },
+  {
+   "label": "STEM partnerships (NJIT, Rutgers-Newark)",
+   "driver": "flat",
+   "values": [
+    0,
+    154500,
+    159135,
+    163909.05,
+    168826.3215,
+    173891.111145,
+    820261.482645,
+    820261.482645
+   ]
+  },
+  {
+   "label": "Subtotal B: extended learning",
+   "driver": null,
+   "values": [
+    0,
+    1163900,
+    1718658,
+    2305653.97,
+    2926322.906,
+    3582156.889587,
+    11696691.765587,
+    11696691.765587
+   ]
+  },
+  {
+   "label": "C. Wraparound and family supports",
+   "driver": null,
+   "values": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Family Resource Center staff",
+   "driver": "flat",
+   "values": [
+    0,
+    309000,
+    318270,
+    327818.1,
+    337652.643,
+    347782.22229,
+    1640522.96529,
+    1640522.96529
+   ]
+  },
+  {
+   "label": "FRC programs (GED, job training, benefits help)",
+   "driver": "flat",
+   "values": [
+    0,
+    206000,
+    212180,
+    218545.4,
+    225101.762,
+    231854.81486,
+    1093681.97686,
+    1093681.97686
+   ]
+  },
+  {
+   "label": "Added counselors and social workers",
+   "driver": "FTE x loaded cost",
+   "values": [
+    0,
+    236900,
+    366010.5,
+    502654.42,
+    647167.56575,
+    799899.111267,
+    2552631.597017,
+    2552631.597017
+   ]
+  },
+  {
+   "label": "Health and mental health partner services",
+   "driver": "flat",
+   "values": [
+    0,
+    154500,
+    159135,
+    163909.05,
+    168826.3215,
+    173891.111145,
+    820261.482645,
+    820261.482645
+   ]
+  },
+  {
+   "label": "Food pantry and family meals",
+   "driver": "per student",
+   "values": [
+    0,
+    61800,
+    95481,
+    131127.24,
+    168826.3215,
+    208669.333374,
+    665903.894874,
+    665903.894874
+   ]
+  },
+  {
+   "label": "Uniforms, bikes and supplies",
+   "driver": "per student",
+   "values": [
+    0,
+    74160,
+    114577.2,
+    157352.688,
+    202591.5858,
+    250403.2000488,
+    799084.6738488,
+    799084.6738488
+   ]
+  },
+  {
+   "label": "Transportation support",
+   "driver": "per student",
+   "values": [
+    0,
+    49440,
+    76384.8,
+    104901.792,
+    135061.0572,
+    166935.4666992,
+    532723.1158992,
+    532723.1158992
+   ]
+  },
+  {
+   "label": "Subtotal C: wraparound and family",
+   "driver": null,
+   "values": [
+    0,
+    1091800,
+    1342038.5,
+    1606308.69,
+    1885227.25675,
+    2179435.259684,
+    8104809.706434,
+    8104809.706434
+   ]
+  },
+  {
+   "label": "D. Promise Pathway and college promise",
+   "driver": null,
+   "values": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Pathway rewards and unlocked benefits",
+   "driver": "per student",
+   "values": [
+    0,
+    61800,
+    95481,
+    131127.24,
+    168826.3215,
+    208669.333374,
+    665903.894874,
+    665903.894874
+   ]
+  },
+  {
+   "label": "Promise Points deposited toward college",
+   "driver": "per student",
+   "values": [
+    0,
+    49440,
+    76384.8,
+    104901.792,
+    135061.0572,
+    166935.4666992,
+    532723.1158992,
+    532723.1158992
+   ]
+  },
+  {
+   "label": "College and career promise reserve",
+   "driver": "per student",
+   "values": [
+    0,
+    123600,
+    190962,
+    262254.48,
+    337652.643,
+    417338.666748,
+    1331807.789748,
+    1331807.789748
+   ]
+  },
+  {
+   "label": "Subtotal D: Promise Pathway and college promise",
+   "driver": null,
+   "values": [
+    0,
+    234840,
+    362827.8,
+    498283.512,
+    641540.0217,
+    792943.4668212,
+    2530434.8005212,
+    2530434.8005212
+   ]
+  },
+  {
+   "label": "E. Leadership and evaluation",
+   "driver": null,
+   "values": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  {
+   "label": "Program director (foundation partner side)",
+   "driver": "flat",
+   "values": [
+    0,
+    180250,
+    185657.5,
+    191227.225,
+    196964.04175,
+    202872.9630025,
+    956971.7297525,
+    956971.7297525
+   ]
+  },
+  {
+   "label": "Data, evaluation and reporting",
+   "driver": "flat",
+   "values": [
+    0,
+    180250,
+    185657.5,
+    191227.225,
+    196964.04175,
+    202872.9630025,
+    956971.7297525,
+    956971.7297525
+   ]
+  },
+  {
+   "label": "Family nights and community events",
+   "driver": "flat",
+   "values": [
+    0,
+    77250,
+    79567.5,
+    81954.525,
+    84413.16075,
+    86945.5555725,
+    410130.7413225,
+    410130.7413225
+   ]
+  },
+  {
+   "label": "Subtotal E: leadership and evaluation",
+   "driver": null,
+   "values": [
+    0,
+    437750,
+    450882.5,
+    464408.975,
+    478341.24425,
+    492691.4815775,
+    2324074.2008275,
+    2324074.2008275
+   ]
+  },
+  {
+   "label": "Annual contingency",
+   "driver": "% of B to E",
+   "values": [
+    0,
+    146414.5,
+    193720.34,
+    243732.75735,
+    296571.571435,
+    352361.354883485,
+    1232800.52366849,
+    1232800.52366849
+   ]
+  },
+  {
+   "label": "TOTAL PHILANTHROPY NEEDED",
+   "driver": null,
+   "values": [
+    4345000,
+    3074704.5,
+    4068127.14,
+    5118387.90435,
+    6228003.000135,
+    7399588.45255319,
+    25888810.9970382,
+    30233810.9970382
+   ]
+  },
+  {
+   "label": "Philanthropy per student (annual)",
+   "driver": null,
+   "values": [
+    null,
+    12811.26875,
+    11300.3531666667,
+    10663.3081340625,
+    10380.005000225,
+    10277.2061841016,
+    10787.0045820992,
+    null
+   ]
+  },
+  {
+   "label": "For context: public base funding (NPS per-pupil)",
+   "driver": "per student, not raised by us",
+   "values": [
+    0,
+    6921600,
+    10693872,
+    14686250.88,
+    18908548.008,
+    23370965.337888,
+    74581236.225888,
+    74581236.225888
+   ]
+  },
+  {
+   "label": "Total cost of the school (public + philanthropy)",
+   "driver": null,
+   "values": [
+    4345000,
+    9996304.5,
+    14761999.14,
+    19804638.78435,
+    25136551.008135,
+    30770553.7904412,
+    100470047.222926,
+    104815047.222926
+   ]
+  },
+  {
+   "label": "Philanthropy share of total",
+   "driver": null,
+   "values": [
+    null,
+    0.3075841177107,
+    0.275581044370661,
+    0.25844389085221,
+    0.24776680771039,
+    0.240476284663159,
+    0.257676906825725,
+    null
+   ]
+  }
+ ],
+ "funding": [
+  {
+   "label": "LeBron James Family Foundation (ask)",
+   "share": 0.4,
+   "values": [
+    1738000,
+    1229881.8,
+    1627250.856,
+    2047355.16174,
+    2491201.200054,
+    2959835.38102127,
+    10355524.3988153,
+    12093524.3988153
+   ]
+  },
+  {
+   "label": "Newark and NJ foundations",
+   "share": 0.3,
+   "values": [
+    1303500,
+    922411.35,
+    1220438.142,
+    1535516.371305,
+    1868400.9000405,
+    2219876.53576596,
+    7766643.29911146,
+    9070143.29911146
+   ]
+  },
+  {
+   "label": "Corporate partners",
+   "share": 0.15,
+   "values": [
+    651750,
+    461205.675,
+    610219.071,
+    767758.1856525,
+    934200.45002025,
+    1109938.26788298,
+    3883321.64955573,
+    4535071.64955573
+   ]
+  },
+  {
+   "label": "Public grants (21st CCLC, community schools)",
+   "share": 0.1,
+   "values": [
+    434500,
+    307470.45,
+    406812.714,
+    511838.790435,
+    622800.3000135,
+    739958.845255319,
+    2588881.09970382,
+    3023381.09970382
+   ]
+  },
+  {
+   "label": "Individual and event giving",
+   "share": 0.05,
+   "values": [
+    217250,
+    153735.225,
+    203406.357,
+    255919.3952175,
+    311400.15000675,
+    369979.422627659,
+    1294440.54985191,
+    1511690.54985191
+   ]
+  },
+  {
+   "label": "Total philanthropy",
+   "share": 1,
+   "values": [
+    4345000,
+    3074704.5,
+    4068127.14,
+    5118387.90435,
+    6228003.000135,
+    7399588.45255319,
+    25888810.9970382,
+    30233810.9970382
+   ]
+  },
+  {
+   "label": "Check vs Budget (should be 0)",
+   "share": null,
+   "values": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "summary": [
+  {
+   "label": "Students at Year 5 (grades 3-8)",
+   "value": 720
+  },
+  {
+   "label": "Startup philanthropy (Year 0)",
+   "value": 4345000
+  },
+  {
+   "label": "Year 1 philanthropy (240 students)",
+   "value": 3074704.5
+  },
+  {
+   "label": "Year 5 philanthropy (720 students)",
+   "value": 7399588.45255319
+  },
+  {
+   "label": "Philanthropy, Years 1-5",
+   "value": 25888810.9970382
+  },
+  {
+   "label": "Philanthropy incl. startup (6 years)",
+   "value": 30233810.9970382
+  },
+  {
+   "label": "Average philanthropy per student-year",
+   "value": 10787.0045820992
+  },
+  {
+   "label": "LJFF ask at target share, incl. startup",
+   "value": 12093524.3988153
+  },
+  {
+   "label": "Public base funding, Years 1-5 (NPS, context)",
+   "value": 74581236.225888
+  },
+  {
+   "label": "Philanthropy as share of total school cost, Y1-Y5",
+   "value": 0.257676906825725
+  }
+ ],
+ "areas": [
+  {
+   "label": "Startup",
+   "value": 4345000,
+   "share": 0.143713275194637
+  },
+  {
+   "label": "Extended learning",
+   "value": 11696691.765587,
+   "share": 0.386874541444109
+  },
+  {
+   "label": "Wraparound and family",
+   "value": 8104809.706434,
+   "share": 0.26807105816822
+  },
+  {
+   "label": "Promise Pathway and college promise",
+   "value": 2530434.8005212,
+   "share": 0.0836955288491117
+  },
+  {
+   "label": "Leadership and evaluation",
+   "value": 2324074.2008275,
+   "share": 0.0768700380198572
+  },
+  {
+   "label": "Contingency",
+   "value": 1232800.52366849,
+   "share": 0.0407755583240649
+  }
+ ],
+ "assumptions": [
+  {
+   "section": "General",
+   "items": [
+    {
+     "label": "Annual cost escalator",
+     "value": 0.03,
+     "unit": "%/yr",
+     "basis": "Planning assumption; roughly recent CPI and NJ salary step growth."
+    },
+    {
+     "label": "Public per-pupil funding (NPS base)",
+     "value": 28000,
+     "unit": "$/student",
+     "basis": "Estimate: NPS 2026-27 budget $1.67B less $421M charter payments, divided by roughly 40,000 district students (Chalkbeat Newark, 27 Mar 2026). Verify with NJDOE Taxpayers' Guide."
+    },
+    {
+     "label": "Contingency on startup",
+     "value": 0.1,
+     "unit": "%",
+     "basis": "Planning assumption."
+    },
+    {
+     "label": "Contingency on annual costs",
+     "value": 0.05,
+     "unit": "%",
+     "basis": "Planning assumption."
+    }
+   ]
+  },
+  {
+   "section": "Staffing",
+   "items": [
+    {
+     "label": "Additional teacher, fully loaded",
+     "value": 125000,
+     "unit": "$/FTE/yr",
+     "basis": "Estimate: Newark teacher salary about $90k plus about 38% benefits. Akron funded 4 extra teachers for 240 students (WKYC, 2018-19)."
+    },
+    {
+     "label": "Students per additional teacher",
+     "value": 60,
+     "unit": "students",
+     "basis": "Akron ratio: 4 extra teachers for 240 students to hold classes at 23 (WKYC)."
+    },
+    {
+     "label": "Counselor / social worker, fully loaded",
+     "value": 115000,
+     "unit": "$/FTE/yr",
+     "basis": "Estimate, NJ salary plus benefits."
+    },
+    {
+     "label": "Students per added counselor / social worker",
+     "value": 120,
+     "unit": "students",
+     "basis": "Design target (above district staffing)."
+    }
+   ]
+  },
+  {
+   "section": "Startup (one time, Year 0)",
+   "items": [
+    {
+     "label": "Building renovation, furnishing, FRC and pantry build-out",
+     "value": 2500000,
+     "unit": "$",
+     "basis": "Akron foundation and partners spent about $2.2M on renovation, furniture, wiring, FRC and pantry (WKYC, 2018); raised for Newark construction costs. Depends on site."
+    },
+    {
+     "label": "Technology and network wiring",
+     "value": 400000,
+     "unit": "$",
+     "basis": "Estimate."
+    },
+    {
+     "label": "Pre-opening staff (program director, FRC director, operations lead)",
+     "value": 450000,
+     "unit": "$",
+     "basis": "Estimate: one planning year."
+    },
+    {
+     "label": "Student recruitment and family outreach",
+     "value": 150000,
+     "unit": "$",
+     "basis": "Estimate."
+    },
+    {
+     "label": "Curriculum, STEM labs and staff training (incl. Akron exchange)",
+     "value": 300000,
+     "unit": "$",
+     "basis": "Estimate."
+    },
+    {
+     "label": "Legal, fiscal sponsor and planning",
+     "value": 150000,
+     "unit": "$",
+     "basis": "Estimate."
+    }
+   ]
+  },
+  {
+   "section": "Extended learning (annual)",
+   "items": [
+    {
+     "label": "Extra hour of school plus summer program",
+     "value": 1200,
+     "unit": "$/student",
+     "basis": "Estimate; Akron funded an extra hour and after-school from its $608k line (WKYC)."
+    },
+    {
+     "label": "After-school, tutoring and substitute coverage",
+     "value": 800,
+     "unit": "$/student",
+     "basis": "Estimate."
+    },
+    {
+     "label": "STEM partnerships (NJIT, Rutgers-Newark labs, mentors, camps)",
+     "value": 150000,
+     "unit": "$/yr",
+     "basis": "Estimate; partners may contribute in kind."
+    }
+   ]
+  },
+  {
+   "section": "Wraparound and family (annual)",
+   "items": [
+    {
+     "label": "Family Resource Center staff (director + 2 coordinators)",
+     "value": 300000,
+     "unit": "$/yr",
+     "basis": "Estimate."
+    },
+    {
+     "label": "FRC programs (GED, job training, benefits navigation)",
+     "value": 200000,
+     "unit": "$/yr",
+     "basis": "Estimate; Akron FRC offers GED and job placement (ipromise.school)."
+    },
+    {
+     "label": "Health and mental health partner services",
+     "value": 150000,
+     "unit": "$/yr",
+     "basis": "Estimate net of insurance billing and in-kind hospital support."
+    },
+    {
+     "label": "Food pantry and family meals",
+     "value": 250,
+     "unit": "$/student",
+     "basis": "Estimate."
+    },
+    {
+     "label": "Uniforms, bikes and supplies",
+     "value": 300,
+     "unit": "$/student",
+     "basis": "Estimate; Akron provides uniforms and bikes (Wikipedia)."
+    },
+    {
+     "label": "Transportation support",
+     "value": 200,
+     "unit": "$/student",
+     "basis": "Estimate; extended day falls outside standard bus routes."
+    }
+   ]
+  },
+  {
+   "section": "Promise Pathway and college promise (annual)",
+   "items": [
+    {
+     "label": "Pathway rewards and unlocked benefits",
+     "value": 250,
+     "unit": "$/student",
+     "basis": "Design: badges and ranks unlock student and family benefits (steering doc sec. 3)."
+    },
+    {
+     "label": "Promise Points deposited toward college",
+     "value": 200,
+     "unit": "$/student",
+     "basis": "Design: value of a Promise Point is an open decision."
+    },
+    {
+     "label": "College and career promise reserve",
+     "value": 500,
+     "unit": "$/student",
+     "basis": "Set aside each year; Akron's scholarship is carried by the University of Akron. Newark terms to be negotiated with local colleges."
+    }
+   ]
+  },
+  {
+   "section": "Leadership and evaluation (annual)",
+   "items": [
+    {
+     "label": "Program director (foundation partner side)",
+     "value": 175000,
+     "unit": "$/yr",
+     "basis": "Akron pairs a district principal with a foundation executive."
+    },
+    {
+     "label": "Data, evaluation and reporting (incl. external evaluator)",
+     "value": 175000,
+     "unit": "$/yr",
+     "basis": "Estimate."
+    },
+    {
+     "label": "Family nights and community events",
+     "value": 75000,
+     "unit": "$/yr",
+     "basis": "Estimate."
+    }
+   ]
+  },
+  {
+   "section": "Funding mix (targets, not commitments)",
+   "items": [
+    {
+     "label": "LeBron James Family Foundation",
+     "value": 0.4,
+     "unit": "% of philanthropy",
+     "basis": "Target ask. Not discussed with LJFF."
+    },
+    {
+     "label": "Newark and NJ foundations",
+     "value": 0.3,
+     "unit": "%",
+     "basis": "Prospects to approach; no commitments."
+    },
+    {
+     "label": "Corporate partners",
+     "value": 0.15,
+     "unit": "%",
+     "basis": "Prospects to approach; no commitments."
+    },
+    {
+     "label": "Public grants (21st CCLC, NJ community schools)",
+     "value": 0.1,
+     "unit": "%",
+     "basis": "Competitive grants; not guaranteed."
+    },
+    {
+     "label": "Individual and event giving",
+     "value": 0.05,
+     "unit": "%",
+     "basis": "Target."
+    },
+    {
+     "label": "Check: funding mix sums to 100%",
+     "value": 1,
+     "unit": null,
+     "basis": null
+    }
+   ]
+  }
+ ],
+ "notes": [
+  "How to read this: the public school base (teachers, building operations, standard services) is paid by Newark Public Schools per pupil, as in Akron, where the district covers standard operating costs and the foundation funds the extras.",
+  "Philanthropy pays for what makes it a We Promise school: extra teachers and time, the Family Resource Center, wraparound supports, the Promise Pathway, and a college promise reserve.",
+  "Biggest swing factors: the site (renovation can range from under $1M in an NPS building to well over $5M for a new building), the college promise terms, and whether partners give in kind.",
+  "Opening year (2028-29), grade plan and enrollment are assumptions to set with NPS."
+ ],
+ "sources": [
+  {
+   "title": "WKYC, 'Where the money goes: breakdown of funding for LeBron James' I Promise School in Akron' (2018-19 figures)",
+   "url": "https://wkyc.com/article/news/education/where-the-money-goes-breakdown-of-funding-for-lebron-james-i-promise-school-in-akron/95-588377750",
+   "used": "APS estimated about $2.5M district cost for FY2019 (about 80% salaries). Foundation and partners: about $2.8M in 2018-19, of which $2.2M for renovation, furniture, wiring, FRC and pantry, and $608k for four extra teachers (class size 23), an extra hour, after-school, subs and tutors. APS projected $8-10M a year by 2023 at full enrollment. 240 students in grades 3-4 at opening."
+  },
+  {
+   "title": "Wikipedia, I Promise School",
+   "url": "https://en.wikipedia.org/wiki/I_Promise_School",
+   "used": "Opened 30 Jul 2018 with 240 students in grades 3-4; full operation grades 1-8 by 2022. District bears more than half of costs; about $8M a year from the district budget at full scale; foundation about $2M in startup. University of Akron scholarship (3.0 GPA) created 2015 with LJFF and JPMorgan Chase."
+  },
+  {
+   "title": "Chalkbeat Newark, school board approves $1.67B budget (27 Mar 2026)",
+   "url": "https://www.chalkbeat.org/newark/2026/03/27/school-board-approves-167-billion-budget-rising-costs-charters-buildings-academic-programs/",
+   "used": "NPS 2026-27 budget $1.67B; state aid $1.38B (82.7%); charter payments $421M; 3,285 teaching positions. District enrollment not stated in the article: the per-pupil input uses about 40,000 and must be verified."
+  },
+  {
+   "title": "I Promise School, Akron",
+   "url": "https://ipromise.school/",
+   "used": "Model, Family Resource Center services, leadership pairing."
+  },
+  {
+   "title": "To verify before any pitch",
+   "url": "https://www.nj.gov/education/guide/",
+   "used": "NJDOE Taxpayers' Guide to Education Spending for Newark per-pupil cost; NPS salary guide for teacher and counselor pay; facility costs once a site is shortlisted."
+  }
+ ]
+}
