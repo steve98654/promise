@@ -1,0 +1,196 @@
+{
+ "updated": "2026-11-15",
+ "scoring": "Need score 0-100 = 40% child poverty rate + 35% share of residents who are Black, Hispanic or Native American + 25% size of that population (log scale), min-max scaled across 56 candidates.",
+ "spread_rules": [
+  "At most two new sites per state",
+  "Only one more Ohio site beside Akron",
+  "No second New Jersey site",
+  "At least two sites per region",
+  "At least two Native American sites"
+ ],
+ "waves": [
+  {
+   "wave": "Flagship",
+   "years": "2018",
+   "sites": [
+    "Akron"
+   ]
+  },
+  {
+   "wave": "Pilot",
+   "years": "planning, opens after LJFF pitch",
+   "sites": [
+    "Newark"
+   ]
+  },
+  {
+   "wave": "Wave 1 (2028-29)",
+   "years": "2028-29",
+   "sites": [
+    "Detroit",
+    "The Bronx",
+    "Pine Ridge Reservation",
+    "Brownsville",
+    "Memphis",
+    "Cleveland",
+    "Jackson"
+   ]
+  },
+  {
+   "wave": "Wave 2 (2030-31)",
+   "years": "2030-31",
+   "sites": [
+    "Gary",
+    "Gallup and Navajo Nation",
+    "Houston",
+    "Hartford",
+    "Rochester",
+    "Birmingham",
+    "Los Angeles"
+   ]
+  },
+  {
+   "wave": "Wave 3 (2032-33)",
+   "years": "2032-33",
+   "sites": [
+    "Philadelphia",
+    "Chicago",
+    "Baltimore",
+    "Fresno",
+    "Miami Gardens",
+    "Phoenix",
+    "Tulsa"
+   ]
+  }
+ ],
+ "wave_note": "Wave dates are placeholders that move with Newark's opening date.",
+ "data_caveat": "Rounded ACS 2019-2023 5-year estimates compiled without live census.gov access; verify before any pitch.",
+ "alternates": [
+  {
+   "city": "Camden",
+   "state": "NJ",
+   "region": "Mid-Atlantic",
+   "focus_population": "Hispanic and Black",
+   "child_poverty_pct": 45,
+   "pct_underrepresented": 92,
+   "need_score": 72.5
+  },
+  {
+   "city": "Laredo",
+   "state": "TX",
+   "region": "Southwest",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 33,
+   "pct_underrepresented": 95,
+   "need_score": 69.3
+  },
+  {
+   "city": "Reading",
+   "state": "PA",
+   "region": "Mid-Atlantic",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 40,
+   "pct_underrepresented": 81,
+   "need_score": 64.1
+  },
+  {
+   "city": "El Paso",
+   "state": "TX",
+   "region": "Southwest",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 25,
+   "pct_underrepresented": 86,
+   "need_score": 62.1
+  },
+  {
+   "city": "Flint",
+   "state": "MI",
+   "region": "Midwest",
+   "focus_population": "Black",
+   "child_poverty_pct": 50,
+   "pct_underrepresented": 58,
+   "need_score": 61.2
+  },
+  {
+   "city": "San Antonio",
+   "state": "TX",
+   "region": "Southwest",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 25,
+   "pct_underrepresented": 73,
+   "need_score": 59.6
+  },
+  {
+   "city": "San Bernardino",
+   "state": "CA",
+   "region": "West",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 30,
+   "pct_underrepresented": 81,
+   "need_score": 58.8
+  },
+  {
+   "city": "Lawrence",
+   "state": "MA",
+   "region": "Northeast",
+   "focus_population": "Hispanic",
+   "child_poverty_pct": 30,
+   "pct_underrepresented": 89,
+   "need_score": 58.5
+  },
+  {
+   "city": "Youngstown",
+   "state": "OH",
+   "region": "Midwest",
+   "focus_population": "Black",
+   "child_poverty_pct": 50,
+   "pct_underrepresented": 55,
+   "need_score": 58.1
+  },
+  {
+   "city": "Shreveport",
+   "state": "LA",
+   "region": "Southeast",
+   "focus_population": "Black",
+   "child_poverty_pct": 40,
+   "pct_underrepresented": 61,
+   "need_score": 57.5
+  },
+  {
+   "city": "Dallas",
+   "state": "TX",
+   "region": "Southwest",
+   "focus_population": "Hispanic and Black",
+   "child_poverty_pct": 27,
+   "pct_underrepresented": 65,
+   "need_score": 57.3
+  },
+  {
+   "city": "Milwaukee",
+   "state": "WI",
+   "region": "Midwest",
+   "focus_population": "Black and Hispanic",
+   "child_poverty_pct": 33,
+   "pct_underrepresented": 60,
+   "need_score": 55.8
+  },
+  {
+   "city": "New Orleans",
+   "state": "LA",
+   "region": "Southeast",
+   "focus_population": "Black",
+   "child_poverty_pct": 33,
+   "pct_underrepresented": 60,
+   "need_score": 54.1
+  },
+  {
+   "city": "Montgomery",
+   "state": "AL",
+   "region": "Southeast",
+   "focus_population": "Black",
+   "child_poverty_pct": 33,
+   "pct_underrepresented": 65,
+   "need_score": 53.5
+  }
+ ]
+}
