@@ -1,0 +1,453 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import { docs } from '../data/links';
+
+const principles = [
+  ['We are family.', "Akron's \"We Are Family\" philosophy applies to students, staff and parents alike."],
+  ['The whole child.', 'Academics and character are built together, with social-emotional learning in the culture.'],
+  ['The whole family.', 'Parents are partners with their own supports and their own commitments.'],
+  ['Earned, not given.', 'High expectations for students and for ourselves.'],
+  ['Newark first.', 'Designed with Newark families and run with Newark institutions.'],
+  ['Measured.', 'We publish what works and what does not.'],
+];
+
+const promises = [
+  {
+    title: 'Student promise', note: 'adapted from Akron',
+    items: ['To go to school and do all my homework.', 'To listen to my teachers, because they will help me learn.', 'To never give up, no matter what.', 'To live a healthy life by eating right and being active.', 'To have fun.', 'And above all else, to finish school.'],
+  },
+  {
+    title: 'Staff promise', note: 'adapted from Akron',
+    items: ['To teach and lead with power and purpose.', 'To build positive relationships with students, staff, families and the community.', 'To set high goals for myself and my students.', 'To love our students, our families and each other.'],
+  },
+  {
+    title: 'Family promise', note: 'new for Newark; draft',
+    items: ['To get my child to school every day, on time.', "To take part in school events and in my child's learning.", 'To use the Family Resource Center to reach my own goals.'],
+  },
+  {
+    title: 'Community promise', note: 'new for Newark; draft',
+    items: ['To provide the services, mentors and opportunities we commit to, every year.', 'To keep the college and career promise for every student who does their part.'],
+  },
+];
+
+const badges = [
+  ['Show Up', 'To go to school', '90% attendance for one month', '95% attendance for a marking period', '95% attendance for a semester with no unexcused tardies', '97% attendance for the full year'],
+  ['Do the Work', 'To do all my homework', 'All homework turned in for two weeks', '90% on time for a marking period', '95% on time for a semester, with corrections completed', 'Full year on time, plus serving as a homework buddy for a peer'],
+  ['Learn and Grow', 'To listen to my teachers', 'Set a personal reading and math goal with a teacher', "Meet one quarterly growth target on the school's diagnostic", "One year's growth in reading or math by mid-year", "More than a year's growth in both, or reaching grade level"],
+  ['Never Give Up', 'To never give up, no matter what', 'Write a goal plan with a mentor', 'Revise and improve a missed assessment or project', 'Finish a long-term project (science fair, build, performance)', 'Coach a younger student through their own goal plan'],
+  ['Healthy Life', 'Eating right and being active', 'Join one sport or active club', 'Log 60 active minutes on most days for a month; complete a nutrition class', 'Finish a full season or improve a personal fitness benchmark', 'Serve as a wellness ambassador or lead a health event'],
+  ['We Are Family', 'To have fun', 'Join a club or team', 'Attend three school events with family', 'Complete a service project in Newark', 'Hold a leadership role: student council, captain or club lead'],
+];
+
+const ranks = [
+  ['Rookie', 'Level 1 in any three badges', 'Name on the Promise Wall, badge pin, recognition at the monthly assembly', 'Invitation to the family celebration night'],
+  ['Starter', 'Level 1 in all six and Level 2 in three', 'Field trips, choice of enrichment clubs (robotics, coding, arts), laptop or tablet checkout', 'Priority enrollment in Family Resource Center classes'],
+  ['All-Star', 'Level 2 in all six and Level 3 in three', 'Summer STEM camp with a partner college, a named mentor, sports and arts camps', 'Family dinners, event tickets from partners'],
+  ['MVP', 'Level 3 in all six and Level 4 in three', 'Student leadership roles, a signature trip, internships and job shadowing for older students', 'Recognition as a Promise Family; a seat on the parent council'],
+];
+
+const model = [
+  ['Longer school day', 'Extended day and summer programming; exact hours set with the district and labor partners.', 'Education'],
+  ['STEM curriculum', 'STEM core with partnerships with NJIT and Rutgers-Newark for labs, mentors and summer camps.', 'Education'],
+  ['"We Are Family" culture and social-emotional learning', 'Same culture, with restorative practices and a counselor-to-student ratio set in the budget.', 'Education'],
+  ['Wraparound supports for academics and character', 'Health, mental health and food access through Newark hospital and nonprofit partners.', 'Wraparound'],
+  ['On-campus Family Resource Center', 'Family Resource Center with adult education, job training and benefits navigation.', 'Wraparound'],
+  ['Events requiring parent participation', 'Family promise plus regular family nights and parent leadership roles.', 'Community'],
+  ['College scholarships for students who do their part', 'A Newark college and career promise negotiated with local colleges and funders.', 'Finance'],
+  ['Akron Public School, jointly created with LJFF', 'District school within Newark Public Schools, jointly created with LJFF; charter as fallback.', 'Legal'],
+];
+
+const partners = [
+  ['LeBron James Family Foundation', 'Vision, programming model, brand, philanthropy and the I Promise network.', 'To be approached'],
+  ['Newark Public Schools', 'Hosts the school; provides staff, facilities support and per-pupil funding.', 'To be approached'],
+  ['Newark colleges (Rutgers-Newark, NJIT, Essex County College)', 'STEM partnerships and the college and career promise.', 'Candidates'],
+  ['Health and social service partners', 'Wraparound services and the Family Resource Center.', 'Candidates'],
+  ['Local funders and corporations', 'Co-funding so LJFF is not asked to carry the cost alone.', 'Candidates'],
+  ['City of Newark', 'Site support, permitting and city services.', 'Candidate'],
+];
+
+const decisions = [
+  ['School model, grade band, eligibility', 'Full committee', 'Recorded vote'],
+  ['Site recommendation', 'Full committee', 'Recorded vote'],
+  ['Budget and philanthropy ask', 'Full committee', 'Recorded vote'],
+  ['When and how to approach LJFF', 'Nicole Newman (chair) with Communications lead', 'Committee informed'],
+  ['Workstream plans and drafts', 'Workstream lead', 'Reported at next meeting'],
+  ['Spending under a set limit', 'Chair', 'Reported at next meeting'],
+];
+
+const workstreams = [
+  ['W1', 'Education and model', 'Education and district lead, with Legal', 'Grade band, eligibility, school day, STEM curriculum, Promise Pathway KPIs, staffing, district or charter structure.', 'A school design brief and an Akron lessons-learned brief.', 'The committee votes on the model.'],
+  ['W2', 'Wraparound and family', 'Wraparound services lead', 'Family Resource Center services, health, mental health, food access, adult education; partner MOUs.', 'A services plan with named partners and costs.', 'At least three partners have signed letters of intent.'],
+  ['W3', 'Site and facilities', 'Site and facilities lead', 'Site criteria, scouting, scoring, cost and zoning checks.', 'A ranked shortlist with a recommended site.', 'The committee votes on the site.'],
+  ['W4', 'Finance and philanthropy', 'Finance and philanthropy lead', 'Startup and five-year operating budget, public versus private funding, co-funders, college promise cost.', 'Budget and funding plan.', 'Co-funders cover a defined share of the philanthropic need.'],
+  ['W5', 'Community and communications', 'Family and community lead, with Communications', 'Listening sessions across the wards, family promise testing, the story and the pitch.', 'Community findings report, pitch deck and written proposal.', 'The proposal is delivered to the Foundation.'],
+];
+
+const phases = [
+  ['Phase 1: Nov 2026 to Jan 2027', 'Seat the committee, adopt this charter, start listening sessions and the Akron brief.', 'Charter adopted; all seats filled.'],
+  ['Phase 2: Jan to Apr 2027', 'Design the model, line up wraparound partners, scout sites.', 'Model voted; partner letters of intent.'],
+  ['Phase 3: Apr to Jul 2027', 'Recommend a site, close the budget and co-funders, build the pitch.', 'Proposal delivered to the Foundation.'],
+];
+
+// Bars for the roadmap chart: [label, start month index, end month index] across Nov 2026 to Jul 2027.
+const months = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+const bars: [string, number, number, string][] = [
+  ['Form committee', 0, 2, 'var(--navy)'],
+  ['W1 Education and model', 1.5, 5, 'var(--brick)'],
+  ['W2 Wraparound and family', 2, 6, 'var(--brick)'],
+  ['W3 Site and facilities', 3, 7, '#c97a2c'],
+  ['W4 Finance and philanthropy', 4, 8, '#c97a2c'],
+  ['W5 Community and pitch', 1, 9, 'var(--gold)'],
+];
+
+const measures = [
+  ['Partnership', 'LJFF and NPS agree to explore', 'Signed partnership agreement'],
+  ['Community', 'Families reached in listening sessions', 'Family Resource Center use; event participation'],
+  ['Students', 'Eligibility and selection defined', 'Attendance, reading and math growth, persistence'],
+  ['Funding', 'Co-funder commitments', 'Multi-year funding secured'],
+  ['Promise', 'College and career promise designed', 'Students on track for the promise'],
+  ['Promise Pathway', 'Badge KPIs calibrated to Newark baselines', 'Share of students at Starter or above in every badge'],
+];
+
+const risks = [
+  ['LJFF is not expanding beyond Akron', 'Arrive with Newark co-funders and a ready model; propose a phased or licensed partnership.', 'Nicole Newman'],
+  ['District alignment', 'Engage NPS early; keep the charter route as a fallback.', 'Education, Legal'],
+  ["Model copied without Akron's lessons", 'Complete the lessons-learned brief before voting on the model.', 'Research'],
+  ['Funding gap after launch', 'Five-year budget with public funding separated from philanthropy.', 'Finance'],
+  ['Community seen as an afterthought', 'Listening sessions before design decisions; parent seats.', 'Community'],
+];
+
+const toc = [
+  ['summary', 'Summary'], ['foundation', 'Foundation'], ['pathway', 'Promise Pathway'], ['model', 'School model'],
+  ['governance', 'Partners'], ['charter', 'Steering charter'], ['workstreams', 'Workstreams'], ['roadmap', 'Roadmap'],
+  ['measures', 'Measures and risks'], ['open', 'Open decisions'],
+];
+---
+
+<Base title="Foundation and steering plan · We Promise" description="Mission, school model, Promise Pathway, governance and roadmap for We Promise Newark.">
+  <p class="eyebrow">Foundation and steering plan</p>
+  <h1>What we are building, and how we will steer it</h1>
+  <Draft updated="14 Nov 2026" pdf={docs.steering} />
+
+  <nav class="toc" aria-label="On this page">
+    {toc.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+  </nav>
+
+  <section class="block" id="summary">
+    <h2>Summary</h2>
+    <div class="prose">
+      <p>
+        The I Promise School in Akron is a partnership between the LeBron James Family Foundation and Akron
+        Public Schools, built for students "already falling behind and in danger of falling through the
+        cracks." It combines a longer school day and STEM curriculum with wraparound supports and a Family
+        Resource Center that treats parents as part of the school.
+      </p>
+      <p>
+        This plan lays the foundation for a Newark version: a mission, vision and set of promises adapted
+        from Akron, the school model we intend to propose, and a steering structure that governs the planning
+        work until the proposal goes to the Foundation.
+      </p>
+    </div>
+    <p class="callout">
+      Our premise: Newark has the need, the anchor institutions and the civic will to host the second
+      school built on the I Promise model. Our job is to arrive with a model, a site, partners and a budget
+      already in place, so the Foundation is being invited into a plan rather than asked to build one.
+    </p>
+    <div class="cards">
+      <div class="card"><h3>What</h3><p>A Newark public school built on the I Promise model.</p></div>
+      <div class="card"><h3>Who it serves</h3><p>Newark students at risk of falling through the cracks, and their families.</p></div>
+      <div class="card"><h3>Three pillars</h3><p>Longer day and STEM; wraparound supports; family engagement.</p></div>
+      <div class="card"><h3>Steering</h3><p>A chartered committee with five workstreams, led by Nicole Newman.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="foundation">
+    <h2>Foundation</h2>
+    <div class="prose">
+      <h3>What we take from Akron</h3>
+      <p>
+        The Akron school's motto is "Nothing is given. Everything is earned." Its stated mission is "to
+        positively affect the lives of children and young adults through education and co-curricular
+        educational initiatives," grounded in the belief that education and an active, healthy lifestyle are
+        pivotal to a child's development. We adopt both as our starting point.
+      </p>
+      <h3>Mission</h3>
+    </div>
+    <p class="callout">
+      We Promise Newark exists to change the trajectory of Newark children who are falling behind, by
+      surrounding them, and their families, with a school that refuses to let them fall through the cracks.
+    </p>
+    <div class="prose">
+      <h3>Vision</h3>
+      <p>
+        Every We Promise Newark student finishes school, reaches college or a career with a plan, and has a
+        family that is stronger for having been part of the school.
+      </p>
+      <h3>Guiding principles</h3>
+      <ul>{principles.map(([a, b]) => <li><strong>{a}</strong> {b}</li>)}</ul>
+      <h3>The promises</h3>
+      <p>
+        Akron's model rests on promises made by students and staff. We keep that form and add promises from
+        families and from the community partners who back the school.
+      </p>
+    </div>
+    <div class="cards">
+      {promises.map((p) => (
+        <div class="card promise">
+          <h3>{p.title}</h3>
+          <p class="small">{p.note}</p>
+          <ul>{p.items.map((i) => <li>{i}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block" id="pathway">
+    <h2>The Promise Pathway</h2>
+    <div class="prose">
+      <p>
+        "Nothing is given. Everything is earned" becomes concrete in the Promise Pathway. Each student
+        promise is turned into a <strong>badge</strong> with four levels of increasing difficulty, much like
+        merit badges in scouting or moving up from rookie to MVP in sports. Each level has an explicit KPI,
+        so students, families and teachers always know what was earned and what comes next. As students earn
+        levels, they unlock <strong>benefits</strong> that grow with them.
+      </p>
+    </div>
+    <p class="callout">
+      Every promise has an action, every action has a KPI, and every KPI earned unlocks something real.
+      Students always know their next step.
+    </p>
+    <div class="prose">
+      <h3>Design rules</h3>
+      <ul>
+        <li><strong>Earn extras, never basics.</strong> Meals, counseling, health care and family services are never tied to badges. Benefits are additions on top of the core supports.</li>
+        <li><strong>Reward growth, not just level.</strong> Learning badges measure progress from each child's own starting point, so a student who starts behind can climb as fast as anyone.</li>
+        <li><strong>Increasing difficulty.</strong> Each level asks for a longer streak, a higher bar or more independence than the last, from a few weeks at Rookie to a full year at MVP.</li>
+        <li><strong>Visible progress.</strong> A Promise Passport (paper and digital) shows every badge and level to the student and family; levels are celebrated at monthly assemblies.</li>
+        <li><strong>Age-appropriate.</strong> KPI thresholds are set by grade band and reviewed each year.</li>
+        <li><strong>Levels are kept.</strong> A level, once earned, is not taken away; streak badges restart at the current level after a setback.</li>
+      </ul>
+      <h3>Badges and KPIs</h3>
+      <p class="small">Thresholds are illustrative starting points for the Education workstream to calibrate against Newark baseline data.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Badge</th><th>Level 1: Rookie</th><th>Level 2: Starter</th><th>Level 3: All-Star</th><th>Level 4: MVP</th></tr></thead>
+        <tbody>
+          {badges.map(([name, promise, ...levels]) => (
+            <tr><td><strong>{name}</strong><br /><span class="small">"{promise}"</span></td>{levels.map((l) => <td>{l}</td>)}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">
+      <strong>Finish School</strong> is the capstone badge. It is earned at each grade promotion by finishing
+      the year with all six badges at Starter or above, and at graduation it is the gateway to the college
+      and career promise.
+    </p>
+
+    <h3>Ranks and unlocked benefits</h3>
+    <p class="prose">A student's overall rank comes from the badges they hold, so no single area decides it.</p>
+    <ol class="ladder">
+      {ranks.map(([name, , student], i) => (
+        <li style={`--step:${i}`}><span class="rank">{name}</span><span>{student}</span></li>
+      ))}
+    </ol>
+    <p class="small ladder-note">Promise Points are banked toward college at every rank.</p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Rank and requirement</th><th>Student unlocks</th><th>Family unlocks</th></tr></thead>
+        <tbody>
+          {ranks.map(([name, req, s, f]) => (
+            <tr><td><strong>{name}:</strong> {req}</td><td>{s}</td><td>{f}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>
+        <strong>Promise Points.</strong> Every level earned deposits Promise Points into a college savings
+        account in the student's name, so the college and career promise is visibly built one action at a
+        time. The dollar value per point is set by the Finance workstream with co-funders.
+      </p>
+      <p>
+        <strong>From student KPIs to school KPIs.</strong> Badge data rolls up into the school's own
+        scorecard: the share of students at Starter or above in each badge, the median time to move up a
+        level, and how attendance, growth and persistence change as students climb.
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="model">
+    <h2>The school model</h2>
+    <p class="prose">
+      Akron's I Promise Method has three pillars. The table shows each Akron element and what we propose for
+      Newark. Newark entries are proposals for the committee to test, not decisions.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Akron element</th><th>Proposed Newark adaptation</th><th>Owner</th></tr></thead>
+        <tbody>{model.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Students served</h3>
+        <p>
+          Akron's school serves students who are behind and at risk. For Newark the committee will define the
+          grade band at launch, the eligibility criteria (for example reading level or attendance) and how
+          students are selected, and will plan to grow one grade per year. The budget assumes opening in fall
+          2028 with 240 students in grades 3 and 4, growing to 720 in grades 3 to 8.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Leadership</h3>
+        <p>
+          Akron pairs a principal from the district with a Foundation executive who oversees vision and
+          programming. We propose the same pairing: a Newark Public Schools principal with deep local roots,
+          and a program director accountable to the Foundation partner.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="governance">
+    <h2>Partnership and governance</h2>
+    <p class="prose">
+      Three partners (the Foundation, Newark Public Schools and Newark anchor institutions) sit above a single
+      steering committee chaired by Nicole Newman, which runs five workstreams.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Partner</th><th>Role</th><th>Status</th></tr></thead>
+        <tbody>{partners.map(([a, b, c]) => <tr><td><strong>{a}</strong></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="charter">
+    <h2>Steering committee charter</h2>
+    <p class="callout">
+      Nicole Newman heads We Promise Newark from an organizational perspective and chairs the steering
+      committee, serving as the single point of contact for partners, including the Foundation.
+    </p>
+    <p class="prose">
+      The steering committee directs all planning for We Promise Newark until a proposal is accepted by the
+      Foundation or the committee is dissolved. It is advisory, holds no funds of its own until a fiscal
+      sponsor is named, and is not the school's eventual governing body. Seats and responsibilities follow
+      the <a href="/committee/">planning committee</a> page.
+    </p>
+    <h3>Decision rights</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Decision</th><th>Who decides</th><th>How</th></tr></thead>
+        <tbody>{decisions.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <h3>Operating rhythm</h3>
+    <ul class="prose">
+      <li>Biweekly committee meetings with a one-page status from each workstream.</li>
+      <li>Quarterly review of the roadmap against the milestones below.</li>
+      <li>Deliberations confidential until the pitch; conflicts of interest disclosed and recorded.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="workstreams">
+    <h2>Workstreams</h2>
+    <div class="cards">
+      {workstreams.map(([id, name, lead, scope, out, done]) => (
+        <div class="card ws">
+          <p class="ws-id">{id}</p>
+          <h3>{name}</h3>
+          <p class="small">Lead: {lead}</p>
+          <p><strong>Scope.</strong> {scope}</p>
+          <p><strong>Output.</strong> {out}</p>
+          <p><strong>Done when.</strong> {done}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block" id="roadmap">
+    <h2>Roadmap: November 2026 to July 2027</h2>
+    <div class="gantt" role="img" aria-label="Roadmap from November 2026 to July 2027, ending with the pitch ready in July">
+      <div class="g-row g-head"><span></span><div class="g-track">{months.map((m) => <span>{m}</span>)}</div></div>
+      {bars.map(([label, a, b, c]) => (
+        <div class="g-row">
+          <span class="g-label">{label}</span>
+          <div class="g-track"><i style={`left:${(a / 9) * 100}%;width:${((b - a) / 9) * 100}%;background:${c}`}></i></div>
+        </div>
+      ))}
+      <p class="small">An illustrative path from committee to pitch, ready by July 2027.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Phase</th><th>Activities</th><th>Exit criteria</th></tr></thead>
+        <tbody>{phases.map(([a, b, c]) => <tr><td><strong>{a}</strong></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="measures">
+    <h2>Measures of success</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Measure</th><th>During planning</th><th>After launch</th></tr></thead>
+        <tbody>{measures.map(([a, b, c]) => <tr><td><strong>{a}</strong></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <h3>Risks and mitigations</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Risk</th><th>Mitigation</th><th>Owner</th></tr></thead>
+        <tbody>{risks.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="open">
+    <h2>Open decisions</h2>
+    <ol class="prose">
+      <li>District school with Newark Public Schools, or a charter?</li>
+      <li>Grade band at launch and eligibility criteria.</li>
+      <li>Which Newark colleges anchor the college and career promise.</li>
+      <li>Who serves as fiscal sponsor during planning.</li>
+      <li>Promise Pathway thresholds by grade band, and the dollar value of a Promise Point.</li>
+      <li>Confirm the 23-site list and wave order, and whether to pitch the network or Newark alone first.</li>
+    </ol>
+    <h3>Sources</h3>
+    <ul class="small">
+      <li>I Promise School, Akron (mission, I Promise Method, student and staff promises, leadership, partners): <a href="https://ipromise.school/">ipromise.school</a></li>
+      <li>LeBron James Family Foundation: <a href="https://www.lebronjamesfamilyfoundation.org/">lebronjamesfamilyfoundation.org</a></li>
+      <li>Akron Public Schools: <a href="https://www.akronschools.com/">akronschools.com</a></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .toc a {
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px;
+    text-decoration: none; color: var(--navy); font-weight: 600; font-size: 0.88rem;
+  }
+  section.block { scroll-margin-top: 16px; }
+  .promise { border-top: 5px solid var(--gold); }
+  .ws { border-top: 5px solid var(--navy); }
+  .ws-id { margin: 0; font-weight: 800; color: var(--brick); letter-spacing: 0.08em; font-size: 0.8rem; }
+  .ladder { list-style: none; padding: 0; margin: 18px 0 6px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end; }
+  .ladder li { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: var(--muted); }
+  .ladder .rank {
+    display: block; color: #fff; font-weight: 800; text-align: center; border-radius: 6px;
+    padding: calc(8px + var(--step) * 8px) 6px 8px; background: var(--navy);
+    opacity: calc(0.55 + var(--step) * 0.15);
+  }
+  .ladder-note { color: #a07400; font-weight: 700; }
+  @media (max-width: 640px) { .ladder { grid-template-columns: 1fr 1fr; } }
+  .gantt { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin: 14px 0; }
+  .g-row { display: grid; grid-template-columns: minmax(110px, 210px) 1fr; gap: 10px; align-items: center; margin: 6px 0; }
+  .g-label { font-size: 0.85rem; }
+  .g-track { position: relative; height: 18px; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 9 - 1px), var(--border) calc(100% / 9 - 1px) calc(100% / 9)); }
+  .g-track i { position: absolute; top: 2px; bottom: 2px; border-radius: 4px; }
+  .g-head .g-track { background: none; display: grid; grid-template-columns: repeat(9, 1fr); font-size: 0.75rem; color: var(--muted); height: auto; }
+</style>

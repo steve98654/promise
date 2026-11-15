@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import { docs } from '../data/links';
+---
+
+<Base title="Foundation one-pager · We Promise" description="The one-page pitch to the LeBron James Family Foundation: Newark first, then a 23-school network.">
+  <p class="eyebrow">Foundation one-pager</p>
+  <h1>The Greatest Assist of All Time</h1>
+  <p class="page-intro">A proposal to the LeBron James Family Foundation: Newark first, then a 23-school network.</p>
+  <Draft updated="14 Nov 2026" pdf={docs.onePager} note="Not yet shared with the Foundation. Figures are planning estimates; no funder has been approached." />
+
+  <p class="callout">
+    <strong>The ask.</strong> Partner with Newark to open the second school built on the I Promise model in
+    fall 2028, and use it to prove the playbook for a national network of 23 schools. From the Foundation we
+    ask for the model, coaching from the Akron team, and about 40% of the philanthropy: roughly $12M over six
+    years. Newark partners commit to raising the other 60%.
+  </p>
+
+  <div class="cols">
+    <div>
+      <section>
+        <h2>Why Newark</h2>
+        <ul>
+          <li><strong>Need.</strong> About 47% of residents are Black (roughly 143,000 people) and about one child in three lives in poverty.</li>
+          <li><strong>Timing.</strong> Newark Public Schools returned to local control in 2018 after two decades of state oversight and is investing in its own turnaround.</li>
+          <li><strong>Anchors.</strong> Rutgers-Newark, NJIT, Essex County College, major hospitals and corporate headquarters, all inside the city.</li>
+          <li><strong>Reach.</strong> Ten miles from Manhattan: the largest media market in the country watching the second school succeed.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What we would build</h2>
+        <p>A Newark public school that keeps Akron's three pillars and adds one idea.</p>
+        <ul>
+          <li><strong>Longer day and STEM</strong>, with college lab partners.</li>
+          <li><strong>Wraparound supports</strong>: health, mental health, food, uniforms and bikes.</li>
+          <li><strong>A Family Resource Center</strong>: GED, job training and benefits help for parents.</li>
+          <li><strong>New: the <a href="/plan/#pathway">Promise Pathway</a>.</strong> Six badges with four levels each (Rookie, Starter, All-Star, MVP) turn "I promise" into goals a child can see. Climbing unlocks rewards and Promise Points toward college. Core supports are never gated.</li>
+        </ul>
+        <p>Opening with 240 students in grades 3 and 4 and adding a grade a year, as Akron did, to 720 students in grades 3 to 8 by year five.</p>
+      </section>
+
+      <section>
+        <h2>Who is at the table</h2>
+        <p>
+          A Newark <a href="/committee/">planning committee</a> chaired by <strong>Nicole Newman</strong>
+          (organizational lead), with seats for Newark Public Schools, families, higher education, health
+          partners, funders and the city. It runs five workstreams through July 2027 so the Foundation is
+          invited into a ready plan, not asked to build one.
+        </p>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>The money</h2>
+        <p>Newark Public Schools pays the public base (about $28,000 per student). Philanthropy pays for what makes it a We Promise school.</p>
+        <div class="table-wrap">
+          <table class="data">
+            <thead><tr><th>Philanthropy (estimate)</th><th class="num">Amount</th></tr></thead>
+            <tbody>
+              <tr><td>Startup year (site, technology, founding staff)</td><td class="num">$4.3M</td></tr>
+              <tr><td>Year 1 (240 students)</td><td class="num">$3.1M</td></tr>
+              <tr><td>Year 5 (720 students)</td><td class="num">$7.4M</td></tr>
+              <tr><td><strong>Six-year total</strong></td><td class="num"><strong>$30.2M</strong></td></tr>
+              <tr><td>Per student per year, on top of the public base</td><td class="num">about $10,800</td></tr>
+              <tr><td><strong>Foundation share at 40%</strong></td><td class="num"><strong>$12.1M</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">
+          The other 60% is targeted from Newark and New Jersey foundations (30%), corporate partners (15%),
+          public grants (10%) and individual giving (5%). No funder has been approached yet. Akron's comparable
+          first-year spend by the Foundation and partners was about $2.8M. Full detail on the{' '}
+          <a href="/budget/">budget page</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>From one school to 23</h2>
+        <p>
+          Akron is the flagship and Newark the pilot. Twenty-one more cities were chosen where large Black
+          populations meet high child poverty, in three waves of seven that start once Newark has a year of
+          results: Detroit, Memphis and Cleveland lead Wave 1; Baltimore and Philadelphia anchor Wave 2;
+          Chicago, Atlanta and Los Angeles complete the map in Wave 3. See <a href="/sites/">all 23 sites</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>What happens next</h2>
+        <ol>
+          <li>An introductory conversation with the Foundation.</li>
+          <li>A visit to Akron to learn from the I Promise team.</li>
+          <li>A joint working session with Newark Public Schools.</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 8px 40px; }
+  .cols section { margin-top: 20px; }
+  .cols h2 { border-bottom: 2px solid var(--gold); padding-bottom: 4px; font-size: 1.3rem; }
+  .cols li { margin: 5px 0; }
+</style>
