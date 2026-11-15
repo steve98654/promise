@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Draft from '../components/Draft.astro';
 import budget from '../data/budget.json';
 import { budgetSheet, docs, money, millions, pct, thousands } from '../data/links';
+import { updated } from '../data/dates';
+import BudgetChart from '../components/BudgetChart.astro';
 
 type Cell = number | string | null;
 const summary = Object.fromEntries(budget.summary.map((s) => [s.label, s.value as number]));
@@ -42,7 +44,7 @@ const areaMax = Math.max(...budget.areas.map((a) => a.value as number));
   <p class="eyebrow">Philanthropy budget</p>
   <h1>What it costs to launch and sustain We Promise Newark</h1>
   <Draft
-    updated="14 Nov 2026"
+    updated={updated.budget}
     note="All figures are planning estimates. The budget assumes Newark opens in fall 2028 (startup year 2027-28); no funder has been approached."
   />
 
@@ -51,7 +53,7 @@ const areaMax = Math.max(...budget.areas.map((a) => a.value as number));
       <h2>The live budget is the Google Sheet</h2>
       <p>
         The team edits the budget together in Google Sheets, and that sheet is the source of truth. The
-        tables below are a snapshot from 14 Nov 2026 and can fall behind it.
+        tables below are a snapshot from {updated.budget} and can fall behind it.
       </p>
     </div>
     <div class="actions">
@@ -68,6 +70,8 @@ const areaMax = Math.max(...budget.areas.map((a) => a.value as number));
     <div class="stat"><div class="num">{money(Math.round(summary['Average philanthropy per student-year'] / 100) * 100)}</div><div class="lbl">Per student per year, on top of the public base</div></div>
     <div class="stat"><div class="num">{millions(summary['LJFF ask at target share, incl. startup'])}</div><div class="lbl">Foundation ask at 40%</div></div>
   </div>
+
+  <BudgetChart />
 
   <section class="block">
     <h2>How to read it</h2>

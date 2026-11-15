@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import budget from '../data/budget.json';
+import { driveFolder, money } from '../data/links';
+import { updated } from '../data/dates';
+
+const renovation = budget.assumptions
+  .flatMap((a) => a.items)
+  .find((i) => i.label.startsWith('Building renovation'))!.value as number;
+
+// Proposed criteria and weights. These are a starting point for the Site and facilities
+// lead; the committee sets the final weights before any site is scored.
+const criteria = [
+  { name: 'Need nearby', weight: 20, what: 'Child poverty and the number of students reading below grade level within walking or short bus distance.' },
+  { name: 'Room to grow', weight: 15, what: 'Space for 720 students in grades 3 to 8 by year five, without a second move.' },
+  { name: 'Family Resource Center space', weight: 15, what: 'A street-facing space for the Family Resource Center, food pantry and health room that families can reach without entering the school.' },
+  { name: 'Cost and condition', weight: 15, what: `Renovation cost against the ${money(renovation)} startup line, plus the building's condition and accessibility.` },
+  { name: 'Access', weight: 10, what: 'Bus and light rail access, safe walking routes and drop-off for an extended school day.' },
+  { name: 'District fit', weight: 10, what: 'An NPS building or one NPS can lease or partner on, and the impact on nearby schools.' },
+  { name: 'Partners close by', weight: 10, what: 'Distance to Rutgers-Newark, NJIT, Essex County College, hospitals and community partners.' },
+  { name: 'Zoning and timing', weight: 5, what: 'School use allowed, with permits and renovation done in time for fall 2028.' },
+];
+const total = criteria.reduce((n, c) => n + c.weight, 0);
+
+const wards = ['North', 'South', 'East', 'West', 'Central'];
+---
+
+<Base title="Site search · We Promise" description="How the We Promise Newark committee will find and score a school building.">
+  <p class="eyebrow">Site search</p>
+  <h1>Finding the right building in Newark</h1>
+  <Draft updated={updated.siteSearch} note="Proposed criteria and weights for the committee to adjust. No sites have been visited or scored yet." />
+
+  <p class="page-intro">
+    The site and facilities lead turns these criteria into a ranked shortlist, and the full committee
+    votes on the recommended site (workstream W3). The aim is a recommendation by July 2027, so the
+    building can be ready for students in fall 2028.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">720</div><div class="lbl">students to house by year five</div></div>
+    <div class="stat"><div class="num">{money(renovation)}</div><div class="lbl">renovation and build-out in the startup budget</div></div>
+    <div class="stat"><div class="num">Apr to Jul 2027</div><div class="lbl">shortlist, then a recorded committee vote</div></div>
+    <div class="stat"><div class="num">0 of 5</div><div class="lbl">wards scouted so far</div></div>
+  </div>
+
+  <section class="block">
+    <h2>What the building needs</h2>
+    <ul class="prose">
+      <li><strong>Classrooms for grades 3 to 8</strong> at about 23 students a class, with room for STEM labs.</li>
+      <li><strong>A Family Resource Center</strong> with its own entrance: GED and job training rooms, benefits help, a food pantry and a family lounge.</li>
+      <li><strong>A health and counseling suite</strong> for partner clinicians, with private rooms.</li>
+      <li><strong>Space for the longer day:</strong> a gym or multipurpose room, a cafeteria that can serve family meals, and after-school space.</li>
+      <li><strong>Bike storage</strong>, since bikes are part of what every student receives.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>How candidates get scored</h2>
+    <p class="prose">
+      Each site is scored 1 to 5 on every criterion. The score is multiplied by the weight, and the total
+      is out of {total * 5}. These weights are a proposal for the committee to change.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Criterion</th><th>What we look at</th><th class="num">Weight</th></tr></thead>
+        <tbody>
+          {criteria.map((c) => (
+            <tr><td><strong>{c.name}</strong></td><td>{c.what}</td><td class="num">{c.weight}</td></tr>
+          ))}
+          <tr><td><strong>Total</strong></td><td></td><td class="num"><strong>{total}</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Where the search stands</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Ward</th><th>Candidate sites</th><th>Status</th></tr></thead>
+        <tbody>
+          {wards.map((w) => (
+            <tr><td><strong>{w} Ward</strong></td><td class="muted">None listed yet</td><td class="muted">Not started</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="small">
+      Add candidates in the <a href={driveFolder}>shared Google Drive folder</a> and they will be added here.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Next steps</h2>
+    <ol class="prose">
+      <li>Seat the site and facilities lead on the <a href="/committee/">planning committee</a>.</li>
+      <li>Agree the criteria and weights.</li>
+      <li>Ask Newark Public Schools and the City for available buildings, and walk each ward with community members.</li>
+      <li>Score the candidates, cost the top three, and bring a recommendation to a committee vote.</li>
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .muted { color: var(--muted); }
+  .stat .num { font-size: 1.35rem; }
+</style>

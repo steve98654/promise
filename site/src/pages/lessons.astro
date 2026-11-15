@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import Draft from '../components/Draft.astro';
+import { updated } from '../data/dates';
+
+const timeline = [
+  ['July 2018', 'Opens as an Akron Public Schools school with 240 students in grades 3 and 4, chosen by lottery from students in the bottom 30% in reading.'],
+  ['April 2019', 'District testing (NWEA MAP) shows 90% of students met or exceeded their expected growth in reading and math.'],
+  ['2018-19', "Ohio's report card gives the school an A for progress but an F for achievement. Performance index: 53.5."],
+  ['2019-20', 'The pandemic closes schools. No state tests are given.'],
+  ['2020-21', 'Performance index falls to 27.5.'],
+  ['2021-22', 'Performance index recovers to 38. The school has lost its founding principal and gone through three interim principals in about a year and a half.'],
+  ['2023', 'About 11% of the first eighth-grade class is proficient on the state English test, and the class had not passed the state math test since third grade.'],
+];
+
+const sources = [
+  ['LeBron James Family Foundation, "Promising Results" (Apr 2019)', 'https://lebronjamesfamilyfoundation.org/news/promising-results'],
+  ['CBS Sports, first-year test score gains (Apr 2019)', 'https://www.cbssports.com/nba/news/lebron-james-i-promise-school-sees-extraordinary-test-score-improvement-after-first-year'],
+  ['Thomas B. Fordham Institute, "An in-depth analysis of the I Promise School\'s troubling academic results" (Aug 2023)', 'https://fordhaminstitute.org/ohio/commentary/depth-analysis-i-promise-schools-troubling-academic-results'],
+  ['FOX 4, reporting on Akron Beacon Journal coverage of 2023 test results (Jul 2023)', 'https://www.fox4news.com/news/lebron-james-backed-i-promise-school-delivers-discouraging-student-test-results-report'],
+  ['I Promise School', 'https://ipromise.school/'],
+];
+---
+
+<Base title="Lessons from Akron · We Promise" description="What the Akron I Promise School got right, where results fell short, and what Newark should do differently.">
+  <p class="eyebrow">Lessons learned</p>
+  <h1>What Akron teaches us</h1>
+  <Draft updated={updated.lessons} note="A starting point for the research and lessons seat. Results after 2023 still need to be pulled from Ohio's school report cards." />
+
+  <p class="page-intro">
+    The Foundation will know the Akron story better than anyone, including the hard parts. A credible
+    pitch names them and shows how Newark plans for them.
+  </p>
+
+  <p class="callout">
+    The short version: families and students got real support, and early growth was strong. But
+    proficiency stayed low, the pandemic hit hard, and leadership turned over. Newark should keep the
+    supports and build the academic plan and the leadership bench just as carefully.
+  </p>
+
+  <section class="block">
+    <h2>What happened in Akron</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>When</th><th>What happened</th></tr></thead>
+        <tbody>{timeline.map(([w, t]) => <tr><td><strong>{w}</strong></td><td>{t}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p class="small">
+      Ohio's performance index gives zero credit for students who are not tested, which pulls down
+      pandemic-era scores. Statewide and district scores also fell during those years.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>What worked</h2>
+    <div class="cards">
+      <div class="card"><h3>Whole-family support</h3><p>The Family Resource Center offers GED prep, job help, and health and legal services, treating parents as part of the school.</p></div>
+      <div class="card"><h3>Removing barriers</h3><p>Counseling, a food pantry, clothing, tutoring, housing help, free uniforms and bikes, and University of Akron tuition for graduates.</p></div>
+      <div class="card"><h3>Early growth</h3><p>In the first year most students grew faster than expected, starting from far behind. Growth earned an A on the state report card.</p></div>
+      <div class="card"><h3>More time</h3><p>A longer school day and year are built into the model from the start.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Where it fell short</h2>
+    <div class="cards">
+      <div class="card short"><h3>Proficiency</h3><p>Growth did not become grade-level results. Few students reached proficiency in reading or math by eighth grade.</p></div>
+      <div class="card short"><h3>Leadership churn</h3><p>The founding principal left in year three, followed by three interim principals in about a year and a half.</p></div>
+      <div class="card short"><h3>The pandemic</h3><p>A school built around in-person time and family contact lost both in its second and third years.</p></div>
+      <div class="card short"><h3>Cost versus results</h3><p>Critics noted that the extra money, time and services should have shown up in scores. There is no public cost-effectiveness study.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>What Newark does differently</h2>
+    <ol class="prose">
+      <li><strong>Set academic targets on day one.</strong> Publish goals for both growth and proficiency, by grade, and report them every year. The <a href="/plan/#pathway">Promise Pathway</a> makes those goals visible to each child.</li>
+      <li><strong>Hire an outside evaluator from the start.</strong> The <a href="/budget/">budget</a> funds data and evaluation every year, so results are measured independently and not only by the district.</li>
+      <li><strong>Build a leadership bench.</strong> Name a successor plan for the principal and the program director before opening, and budget for retention.</li>
+      <li><strong>Make the academic plan as strong as the supports.</strong> Wraparound services open the door; a proven reading and math program has to walk students through it.</li>
+      <li><strong>Plan for disruption.</strong> Have a written plan for keeping tutoring, meals and family contact going if school is interrupted.</li>
+      <li><strong>Ask Akron directly.</strong> Visit the I Promise team and ask what they would change. That conversation is step two of the <a href="/pitch/">pitch</a>.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2>Still to research</h2>
+    <ul class="prose">
+      <li>Ohio report card results for 2022-23 through 2024-25.</li>
+      <li>Attendance and chronic absence compared with similar Akron schools.</li>
+      <li>Family Resource Center use and parent outcomes (GED, jobs).</li>
+      <li>The Foundation's and district's actual annual spending per student.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Sources</h2>
+    <ul class="small">
+      {sources.map(([t, u]) => <li><a href={u}>{t}</a></li>)}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .short { border-top: 5px solid var(--brick); }
+  .card:not(.short) { border-top: 5px solid #13917f; }
+</style>

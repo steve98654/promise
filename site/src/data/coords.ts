@@ -1,0 +1,27 @@
+// Approximate city coordinates [longitude, latitude] for the expansion map.
+// Keyed by the city name used in sites.json.
+export const coords: Record<string, [number, number]> = {
+  Akron: [-81.519, 41.081],
+  Newark: [-74.172, 40.736],
+  Detroit: [-83.046, 42.331],
+  'The Bronx': [-73.865, 40.845],
+  'Pine Ridge Reservation': [-102.556, 43.025],
+  Brownsville: [-97.497, 25.901],
+  Memphis: [-90.049, 35.149],
+  Cleveland: [-81.694, 41.499],
+  Jackson: [-90.184, 32.299],
+  Gary: [-87.346, 41.593],
+  'Gallup and Navajo Nation': [-108.742, 35.528],
+  Houston: [-95.369, 29.76],
+  Hartford: [-72.685, 41.764],
+  Rochester: [-77.61, 43.157],
+  Birmingham: [-86.802, 33.521],
+  'Los Angeles': [-118.244, 34.052],
+  Philadelphia: [-75.165, 39.953],
+  Chicago: [-87.63, 41.878],
+  Baltimore: [-76.612, 39.29],
+  Fresno: [-119.787, 36.738],
+  'Miami Gardens': [-80.246, 25.942],
+  Phoenix: [-112.074, 33.448],
+  Tulsa: [-95.993, 36.154],
+};

@@ -1,48 +1,92 @@
 ---
 import Base from '../layouts/Base.astro';
+import USMap from '../components/USMap.astro';
+import * as B from '../data/budgetSummary';
+import { millions, pct } from '../data/links';
+import sites from '../data/sites.json';
+
+const states = new Set(sites.map((s) => s.state)).size;
+
+const work = [
+  { href: '/committee/', title: 'Planning committee', text: 'Nine seats, chaired by Nicole Newman, running the work through July 2027.' },
+  { href: '/plan/', title: 'Foundation and steering plan', text: 'Mission, school model, the Promise Pathway, governance and the roadmap.' },
+  { href: '/pitch/', title: 'Foundation one-pager', text: 'The ask to the LeBron James Family Foundation on one page.' },
+  { href: '/budget/', title: 'Philanthropy budget', text: 'What it costs to open in fall 2028 and run for five years.' },
+  { href: '/site-search/', title: 'Site search', text: 'What a Newark building needs, and how candidates get scored.' },
+  { href: '/lessons/', title: 'Lessons from Akron', text: 'What worked, where results fell short, and what Newark does differently.' },
+  { href: '/expansion/', title: 'Future expansion', text: `Akron and Newark, then 21 more sites in three waves, across ${states} states in all.` },
+  { href: '/brand/', title: 'Brand', text: 'The We Promise logo set and colors.' },
+];
 ---
 
-<Base title="Promise Newark">
+<Base title="We Promise · Newark" description="Planning a We Promise school in Newark, NJ, built on LeBron James's I Promise model, then growing to 23 schools.">
   <section class="hero">
     <p class="eyebrow">Starting in Newark, NJ. Growing across the USA.</p>
     <h1>The greatest of all time, measured in kids who graduate.</h1>
     <p class="lede">
       LeBron James's greatest legacy isn't a ring. It's a public school in Akron that gives kids who
-      were falling behind a real path to college. This site holds the planning materials for bringing
-      that model to Newark first, and then helping it grow city by city.
+      were falling behind a real path to college. We are planning to bring that model to Newark first,
+      and then help it grow city by city.
     </p>
     <div class="hero-actions">
-      <a class="button" href="/committee/">Meet the planning committee</a>
-      <a class="button alt" href="/documents/">Read the planning drafts</a>
+      <a class="button" href="/pitch/">Read the one-page pitch</a>
+      <a class="button alt" href="/committee/">Meet the planning committee</a>
     </div>
   </section>
 
-  <section class="workstreams">
+  <div class="stats">
+    <div class="stat"><div class="num">Fall 2028</div><div class="lbl">Newark school opens with 240 students in grades 3 and 4</div></div>
+    <div class="stat"><div class="num">{B.studentsYear5}</div><div class="lbl">students in grades 3 to 8 by year five</div></div>
+    <div class="stat"><div class="num">{millions(B.sixYearTotal)}</div><div class="lbl">philanthropy over six years, on top of public funding</div></div>
+    <div class="stat"><div class="num">{millions(B.ljffAsk)}</div><div class="lbl">the Foundation's share ({pct(B.ljffShare)}); Newark raises the rest</div></div>
+  </div>
+
+  <section class="block">
+    <h2>Why Newark</h2>
+    <div class="why">
+      <div><h3>Need</h3><p>About 47% of residents are Black, and about one child in three lives in poverty.</p></div>
+      <div><h3>Timing</h3><p>Newark Public Schools regained local control in 2018 and is investing in its own turnaround.</p></div>
+      <div><h3>Anchors</h3><p>Rutgers-Newark, NJIT, Essex County College, major hospitals and corporate headquarters.</p></div>
+      <div><h3>Reach</h3><p>Ten miles from Manhattan, in the largest media market in the country.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>One school, then 23</h2>
+    <p class="prose">
+      Twenty-three schools, a nod to LeBron's number. Akron is the flagship, Newark is the pilot, and 21
+      more sites follow in three waves once Newark has a year of results.
+    </p>
+    <USMap />
+    <p><a href="/expansion/">See all 23 sites and how they were chosen</a></p>
+  </section>
+
+  <section class="block">
     <h2>What we're working on</h2>
-    <ul>
-      <li><strong><a href="/committee/">Planning committee.</a></strong> Nine seats, led organizationally by Nicole Newman.</li>
-      <li><strong><a href="/plan/">Foundation and steering plan.</a></strong> Mission, school model, the Promise Pathway and the roadmap to July 2027.</li>
-      <li><strong><a href="/pitch/">Foundation one-pager.</a></strong> The ask to the LeBron James Family Foundation.</li>
-      <li><strong><a href="/budget/">Philanthropy budget.</a></strong> What it costs to launch in fall 2028 and sustain for five years.</li>
-      <li><strong><a href="/expansion/">Future expansion.</a></strong> Newark first, then 21 more sites across 19 states in three waves.</li>
-      <li><strong>Site search.</strong> Finding a building in Newark.</li>
-      <li><strong>Lessons learned.</strong> What worked and what didn't in Akron.</li>
-      <li><strong><a href="/brand/">Marketing materials.</a></strong> The We Promise logo set, then a pitch deck.</li>
-    </ul>
+    <div class="cards">
+      {work.map((w) => (
+        <a class="card work" href={w.href}>
+          <h3>{w.title}</h3>
+          <p>{w.text}</p>
+        </a>
+      ))}
+    </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding: 24px 0 40px; max-width: 760px; }
-  .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; font-size: 0.8rem; color: var(--brick); }
+  .hero { padding: 24px 0 16px; max-width: 760px; }
   h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 8px 0 16px; }
   .lede { font-size: 1.15rem; color: var(--muted); }
-  .button {
-    display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 8px;
-    background: var(--navy); color: var(--cream); text-decoration: none; font-weight: 700;
-  }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .hero-actions .button { padding: 12px 22px; }
   .button.alt { background: var(--gold); color: var(--navy); }
-  .workstreams ul { padding-left: 20px; }
-  .workstreams li { margin: 6px 0; }
+  .stat .num { font-size: 1.5rem; }
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; }
+  .why div { border-left: 4px solid var(--brick); padding: 2px 0 2px 14px; }
+  .why h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .why p { margin: 0; color: var(--ink); }
+  .work { text-decoration: none; color: var(--ink); border-top: 5px solid var(--gold); transition: box-shadow 0.15s; }
+  .work:hover { box-shadow: 0 4px 14px rgba(18, 35, 63, 0.12); }
+  .work h3 { color: var(--brick); }
 </style>

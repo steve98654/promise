@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Draft from '../components/Draft.astro';
+import { updated } from '../data/dates';
 import { docs } from '../data/links';
 
 const principles = [
@@ -128,7 +129,7 @@ const toc = [
 <Base title="Foundation and steering plan · We Promise" description="Mission, school model, Promise Pathway, governance and roadmap for We Promise Newark.">
   <p class="eyebrow">Foundation and steering plan</p>
   <h1>What we are building, and how we will steer it</h1>
-  <Draft updated="14 Nov 2026" pdf={docs.steering} />
+  <Draft updated={updated.steering} pdf={docs.steering} />
 
   <nav class="toc" aria-label="On this page">
     {toc.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
@@ -426,12 +427,16 @@ const toc = [
 </Base>
 
 <style>
-  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .toc {
+    display: flex; gap: 8px; margin: 0 -16px 8px; padding: 10px 16px; overflow-x: auto; scrollbar-width: thin;
+    position: sticky; top: 0; z-index: 5; background: rgba(255, 247, 232, 0.96); border-bottom: 1px solid var(--border);
+  }
+  .toc a { white-space: nowrap; }
   .toc a {
     background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px;
     text-decoration: none; color: var(--navy); font-weight: 600; font-size: 0.88rem;
   }
-  section.block { scroll-margin-top: 16px; }
+  section.block { scroll-margin-top: 64px; }
   .promise { border-top: 5px solid var(--gold); }
   .ws { border-top: 5px solid var(--navy); }
   .ws-id { margin: 0; font-weight: 800; color: var(--brick); letter-spacing: 0.08em; font-size: 0.8rem; }

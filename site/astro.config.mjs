@@ -2,6 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Old URL for the expansion page.
-  redirects: { '/sites': '/expansion' },
+  // Old URLs: the expansion page used to be /sites, and the retired logo concepts lived at /logos.
+  redirects: { '/sites': '/expansion', '/logos': '/brand' },
 });

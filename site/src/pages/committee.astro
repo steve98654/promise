@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Draft from '../components/Draft.astro';
 import { docs, driveFolder } from '../data/links';
+import { updated } from '../data/dates';
 
 const seats = [
   {
@@ -79,7 +80,7 @@ const steps = [
 <Base title="Planning committee · We Promise" description="Who sits on the We Promise Newark planning committee, what each seat owns, and the four-step plan.">
   <p class="eyebrow">Planning committee</p>
   <h1>The people who turn the idea into a proposal</h1>
-  <Draft updated="7 Nov 2026" pdf={docs.committee} />
+  <Draft updated={updated.committee} pdf={docs.committee} />
 
   <p class="page-intro">
     The planning committee turns the idea of a We Promise school in Newark into a proposal the LeBron
