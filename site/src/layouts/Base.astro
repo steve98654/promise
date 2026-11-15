@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/inter';
 import { driveFolder } from '../data/links';
 interface Props {
   title: string;
@@ -11,13 +12,15 @@ const nav = [
   { href: '/plan/', label: 'Plan' },
   { href: '/pitch/', label: 'Pitch' },
   { href: '/budget/', label: 'Budget' },
+  { href: '/site-search/', label: 'Site Search' },
+  { href: '/lessons/', label: 'Lessons' },
   { href: '/expansion/', label: 'Future Expansion' },
   { href: '/documents/', label: 'Documents' },
   { href: '/brand/', label: 'Brand' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href) || (href === '/brand/' && path.startsWith('/logos'));
+  href === '/' ? path === '/' : path.startsWith(href);
 ---
 
 <!doctype html>
@@ -27,12 +30,18 @@ const isActive = (href: string) =>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/brand/we-promise-icon.svg" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/brand/we-promise-horizontal.png" />
     <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body>
+  <body id="top">
     <header class="site-header">
       <a href="/" class="brand"><img src="/brand/we-promise-horizontal-dark.svg" alt="We Promise" height="52" /></a>
-      <nav aria-label="Main">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <nav aria-label="Main" id="main-nav">
         {nav.map((n) => (
           <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>
         ))}
@@ -41,10 +50,25 @@ const isActive = (href: string) =>
     <main>
       <slot />
     </main>
+    <a href="#top" class="to-top" aria-label="Back to top">↑ Top</a>
     <footer class="site-footer">
       <p><a href={driveFolder}>Shared Google Drive folder</a> · <a href="/documents/">All documents</a></p>
       <p>Planning draft. Not affiliated with or endorsed by the LeBron James Family Foundation.</p>
     </footer>
+    <script is:inline>
+      (function () {
+        var btn = document.querySelector('.menu-toggle');
+        var header = document.querySelector('.site-header');
+        btn.addEventListener('click', function () {
+          var open = header.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        var top = document.querySelector('.to-top');
+        var onScroll = function () { top.classList.toggle('show', window.scrollY > 900); };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
   </body>
 </html>
 
@@ -62,7 +86,7 @@ const isActive = (href: string) =>
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter Variable', Inter, 'Helvetica Neue', Arial, sans-serif;
     color: var(--ink);
     background: var(--cream);
     line-height: 1.55;
@@ -80,6 +104,43 @@ const isActive = (href: string) =>
   .site-header nav a { padding: 4px 0; border-bottom: 2px solid transparent; }
   .site-header nav a[aria-current='page'] { color: var(--gold); border-bottom-color: var(--gold); }
   .site-footer a { color: var(--muted); }
+  .menu-toggle {
+    display: none; background: transparent; color: var(--cream); border: 1px solid rgba(255,247,232,0.5);
+    border-radius: 8px; padding: 6px 14px; font: inherit; font-weight: 700; cursor: pointer;
+  }
+  @media (max-width: 720px) {
+    .js .menu-toggle { display: block; }
+    .js .site-header nav { display: none; width: 100%; flex-direction: column; gap: 0; padding: 4px 0 10px; }
+    .js .site-header.open nav { display: flex; }
+    .js .site-header nav a { padding: 10px 2px; border-bottom: 1px solid rgba(255,247,232,0.12); }
+    .js .site-header nav a[aria-current='page'] { border-bottom-color: var(--gold); }
+    .site-header .brand img { height: 44px; }
+  }
+  .to-top {
+    position: fixed; right: 16px; bottom: 16px; background: var(--navy); color: var(--cream); text-decoration: none;
+    font-weight: 700; font-size: 0.85rem; padding: 8px 12px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  /* Print: clean pages for handing out or saving as PDF. */
+  @media print {
+    @page { margin: 16mm 14mm; }
+    body { background: #fff; font-size: 10.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .site-header nav, .menu-toggle, .to-top, .toc, .actions, .hero-actions, .no-print { display: none !important; }
+    .site-header { background: #fff; padding: 0 0 8px; border-bottom: 2px solid var(--navy); }
+    .site-header .brand img { content: url('/brand/we-promise-horizontal.svg'); height: 40px; }
+    main { max-width: none; padding: 12px 0 0; }
+    a { color: inherit; text-decoration: none; }
+    .card, .stat, .table-wrap, figure, tr, .callout { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .table-wrap { overflow: visible; }
+    table.data thead th { position: static; }
+    .callout { border: 2px solid var(--navy); background: #fff !important; color: var(--ink) !important; }
+    .site-footer { padding: 12px 0 0; }
+  }
 
   /* Shared content styles for the planning pages */
   .page-intro { max-width: 760px; color: var(--muted); font-size: 1.08rem; }

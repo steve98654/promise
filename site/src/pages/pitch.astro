@@ -1,20 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
 import Draft from '../components/Draft.astro';
-import { docs } from '../data/links';
+import { docs, millions, pct } from '../data/links';
+import { updated } from '../data/dates';
+import * as B from '../data/budgetSummary';
+
+// Funding mix sentence, e.g. "Newark and NJ foundations (30%), corporate partners (15%) ..."
+const tidy = (t: string) => t.replace(/ \(.*\)$/, '').replace(/^(Corporate|Public|Individual)/, (m) => m.toLowerCase());
+const others = B.otherFunders.map((f) => `${tidy(f.label)} (${pct(f.share)})`);
+const othersText = others.slice(0, -1).join(', ') + ' and ' + others[others.length - 1];
+const perStudent = `about $${(Math.round(B.perStudent / 100) * 100).toLocaleString('en-US')}`;
 ---
 
 <Base title="Foundation one-pager · We Promise" description="The one-page pitch to the LeBron James Family Foundation: Newark first, then a 23-school network.">
   <p class="eyebrow">Foundation one-pager</p>
   <h1>The Greatest Assist of All Time</h1>
   <p class="page-intro">A proposal to the LeBron James Family Foundation: Newark first, then a 23-school network.</p>
-  <Draft updated="15 Nov 2026" pdf={docs.onePager} note="Not yet shared with the Foundation. Figures are planning estimates; no funder has been approached." />
+  <Draft updated={updated.onePager} pdf={docs.onePager} note="Not yet shared with the Foundation. Figures are planning estimates; no funder has been approached." />
 
   <p class="callout">
     <strong>The ask.</strong> Partner with Newark to open the second school built on the I Promise model in
     fall 2028, and use it to prove the playbook for a national network of 23 schools. From the Foundation we
-    ask for the model, coaching from the Akron team, and about 40% of the philanthropy: roughly $12M over six
-    years. Newark partners commit to raising the other 60%.
+    ask for the model, coaching from the Akron team, and about {pct(B.ljffShare)} of the philanthropy: roughly {millions(B.ljffAsk)} over six
+    years. Newark partners commit to raising the other {pct(1 - B.ljffShare)}.
   </p>
 
   <div class="cols">
@@ -60,18 +68,17 @@ import { docs } from '../data/links';
           <table class="data">
             <thead><tr><th>Philanthropy (estimate)</th><th class="num">Amount</th></tr></thead>
             <tbody>
-              <tr><td>Startup year (site, technology, founding staff)</td><td class="num">$4.3M</td></tr>
-              <tr><td>Year 1 (240 students)</td><td class="num">$3.1M</td></tr>
-              <tr><td>Year 5 (720 students)</td><td class="num">$7.4M</td></tr>
-              <tr><td><strong>Six-year total</strong></td><td class="num"><strong>$30.2M</strong></td></tr>
-              <tr><td>Per student per year, on top of the public base</td><td class="num">about $10,800</td></tr>
-              <tr><td><strong>Foundation share at 40%</strong></td><td class="num"><strong>$12.1M</strong></td></tr>
+              <tr><td>Startup year (site, technology, founding staff)</td><td class="num">{millions(B.startup)}</td></tr>
+              <tr><td>Year 1 (240 students)</td><td class="num">{millions(B.year1)}</td></tr>
+              <tr><td>Year 5 ({B.studentsYear5} students)</td><td class="num">{millions(B.year5)}</td></tr>
+              <tr><td><strong>Six-year total</strong></td><td class="num"><strong>{millions(B.sixYearTotal)}</strong></td></tr>
+              <tr><td>Per student per year, on top of the public base</td><td class="num">{perStudent}</td></tr>
+              <tr><td><strong>Foundation share at {pct(B.ljffShare)}</strong></td><td class="num"><strong>{millions(B.ljffAsk)}</strong></td></tr>
             </tbody>
           </table>
         </div>
         <p class="small">
-          The other 60% is targeted from Newark and New Jersey foundations (30%), corporate partners (15%),
-          public grants (10%) and individual giving (5%). No funder has been approached yet. Akron's comparable
+          The other {pct(1 - B.ljffShare)} is targeted from {othersText}. No funder has been approached yet. Akron's comparable
           first-year spend by the Foundation and partners was about $2.8M. Full detail on the{' '}
           <a href="/budget/">budget page</a>.
         </p>

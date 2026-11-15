@@ -1,0 +1,60 @@
+---
+// Bar chart of philanthropy needed each year, read from budget.json.
+import budget from '../data/budget.json';
+import { thousands, millions } from '../data/links';
+
+const total = budget.budgetRows.find((r) => r.label.startsWith('TOTAL PHILANTHROPY'))!;
+const students = budget.budgetRows.find((r) => r.label === 'Students enrolled')!;
+const bars = budget.years.slice(0, 6).map((y, i) => ({
+  year: y,
+  short: i === 0 ? 'Startup' : `Year ${i}`,
+  value: total.values[i] as number,
+  students: (students.values[i] as number) || 0,
+}));
+const W = 640, H = 300, top = 30, bottom = 46, left = 8, right = 8;
+const max = Math.ceil(Math.max(...bars.map((b) => b.value)) / 2e6) * 2e6;
+const plotH = H - top - bottom;
+const slot = (W - left - right) / bars.length;
+const bw = Math.min(64, slot * 0.6);
+const y = (v: number) => top + plotH - (v / max) * plotH;
+const grid = Array.from({ length: max / 2e6 + 1 }, (_, i) => i * 2e6);
+---
+
+<figure class="bchart">
+  <figcaption><strong>Philanthropy needed each year</strong> <span>(on top of public funding)</span></figcaption>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Philanthropy needed: ${millions(bars[0].value)} in the startup year, then ${millions(bars[1].value)} in year 1 rising to ${millions(bars[5].value)} in year 5.`}>
+    {grid.map((g) => (
+      <g>
+        <line x1={left} x2={W - right} y1={y(g)} y2={y(g)} class="grid" />
+        {g > 0 && <text x={left} y={y(g) - 4} class="axis">{`$${g / 1e6}M`}</text>}
+      </g>
+    ))}
+    {bars.map((b, i) => {
+      const cx = left + slot * i + slot / 2;
+      return (
+        <g class="bar">
+          <title>{`${b.year}: ${thousands(b.value)}${b.students ? `, ${b.students} students` : ''}`}</title>
+          <rect x={cx - slot / 2} y={top} width={slot} height={plotH} fill="transparent" />
+          <path d={`M${cx - bw / 2},${y(0)} V${y(b.value) + 4} q0,-4 4,-4 H${cx + bw / 2 - 4} q4,0 4,4 V${y(0)} Z`} class={i === 0 ? 'startup' : 'annual'} />
+          <text x={cx} y={y(b.value) - 8} text-anchor="middle" class="val">{millions(b.value)}</text>
+          <text x={cx} y={H - bottom + 18} text-anchor="middle" class="axis strong">{b.short}</text>
+          <text x={cx} y={H - bottom + 36} text-anchor="middle" class="axis">{b.students ? `${b.students} students` : 'one time'}</text>
+        </g>
+      );
+    })}
+  </svg>
+</figure>
+
+<style>
+  .bchart { margin: 18px 0; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; max-width: 760px; }
+  figcaption { color: var(--navy); margin-bottom: 6px; }
+  figcaption span { color: var(--muted); font-size: 0.9rem; }
+  svg { display: block; width: 100%; height: auto; }
+  .grid { stroke: var(--border); stroke-width: 1; }
+  .axis { font-size: 13px; fill: var(--muted); }
+  .axis.strong { fill: var(--ink); font-weight: 700; }
+  .val { font-size: 14px; font-weight: 800; fill: var(--navy); }
+  .annual { fill: var(--navy); }
+  .startup { fill: #8a6a2a; }
+  .bar:hover path { opacity: 0.85; }
+</style>

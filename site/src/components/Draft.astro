@@ -1,10 +1,10 @@
 ---
 interface Props {
-  updated?: string;
+  updated: string;
   pdf?: string;
   note?: string;
 }
-const { updated = '14 Nov 2026', pdf, note } = Astro.props;
+const { updated, pdf, note } = Astro.props;
 ---
 
 <aside class="draft-banner">

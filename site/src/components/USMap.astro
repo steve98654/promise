@@ -1,0 +1,99 @@
+---
+// Static US map of the 23 We Promise sites, drawn at build time (no JavaScript
+// in the browser). State shapes come from the us-atlas package (US Census data).
+import { geoAlbersUsa, geoPath } from 'd3-geo';
+import { feature, mesh } from 'topojson-client';
+import us from 'us-atlas/states-10m.json';
+import sites from '../data/sites.json';
+import { coords } from '../data/coords';
+
+interface Props { labels?: 'all' | 'key'; caption?: string }
+const { labels = 'key', caption } = Astro.props;
+
+const W = 975, H = 610;
+const projection = geoAlbersUsa().scale(1300).translate([W / 2, H / 2]);
+const path = geoPath(projection);
+const topo = us as any;
+const nation = path(feature(topo, topo.objects.nation) as any);
+const borders = path(mesh(topo, topo.objects.states, (a: any, b: any) => a !== b) as any);
+
+const groups = [
+  { key: 'start', label: 'Akron and Newark', color: '#b23a2b', test: (w: string) => w === 'Flagship' || w === 'Pilot' },
+  { key: 'w1', label: 'Wave 1 (2028-29)', color: '#2a5aa8', test: (w: string) => w.startsWith('Wave 1') },
+  { key: 'w2', label: 'Wave 2 (2030-31)', color: '#13917f', test: (w: string) => w.startsWith('Wave 2') },
+  { key: 'w3', label: 'Wave 3 (2032-33)', color: '#c07d10', test: (w: string) => w.startsWith('Wave 3') },
+];
+const keyCities = new Set(['Akron', 'Newark', 'Detroit', 'Pine Ridge Reservation', 'Houston', 'Los Angeles', 'Chicago', 'Phoenix', 'Miami Gardens']);
+// On phones only these few labels fit.
+const phoneKey = new Set(['Akron', 'Newark', 'Pine Ridge Reservation', 'Houston', 'Los Angeles', 'Miami Gardens']);
+const short = (c: string) => c.replace(' Reservation', '').replace('Gallup and Navajo Nation', 'Navajo Nation');
+// Labels that would sit on top of a neighbor go to the left of the dot.
+const leftLabels = new Set(['Akron', 'Detroit', 'Gary', 'Chicago', 'Fresno', 'Philadelphia', 'Brownsville', 'Miami Gardens', 'Gallup and Navajo Nation', 'Houston']);
+
+const points = sites.map((s) => {
+  const ll = coords[s.city];
+  if (!ll) throw new Error(`No coordinates for ${s.city} in src/data/coords.ts`);
+  const xy = projection(ll);
+  if (!xy) throw new Error(`${s.city} falls outside the map projection`);
+  const g = groups.find((gr) => gr.test(s.wave))!;
+  const left = leftLabels.has(s.city);
+  return { ...s, x: xy[0], y: xy[1], g, left, key: phoneKey.has(s.city), above: s.city === 'Newark', label: labels === 'all' || keyCities.has(s.city) };
+});
+const star = (x: number, y: number, r: number) =>
+  Array.from({ length: 10 }, (_, i) => {
+    const a = (Math.PI / 5) * i - Math.PI / 2;
+    const rr = i % 2 ? r * 0.45 : r;
+    return `${(x + rr * Math.cos(a)).toFixed(1)},${(y + rr * Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
+---
+
+<figure class="usmap">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="map-title map-desc">
+    <title id="map-title">Map of the 23 planned We Promise schools</title>
+    <desc id="map-desc">Akron and Newark first, then three waves of seven sites each across 19 states. The full list is on the Future Expansion page.</desc>
+    <path d={nation} class="land" />
+    <path d={borders} class="borders" />
+    {[...points].sort((a, b) => (a.g.key === 'start' ? 1 : 0) - (b.g.key === 'start' ? 1 : 0)).map((p) => (
+      <g class="pt">
+        <title>{`${p.rank}. ${p.city}, ${p.state} · ${p.g.label}`}</title>
+        <circle cx={p.x} cy={p.y} r="16" fill="transparent" />
+        {p.g.key === 'start'
+          ? <polygon points={star(p.x, p.y, 14)} fill={p.g.color} class="mark" />
+          : <circle cx={p.x} cy={p.y} r="7.5" fill={p.g.color} class="mark" />}
+        {p.label && (
+          <text class:list={{ minor: !p.key }} x={p.above ? p.x : p.left ? p.x - 14 : p.x + 14} y={p.above ? p.y - 20 : p.y + 6} text-anchor={p.above ? 'middle' : p.left ? 'end' : 'start'}>{short(p.city)}</text>
+        )}
+      </g>
+    ))}
+  </svg>
+  <ul class="legend">
+    {groups.map((g) => (
+      <li>
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          {g.key === 'start' ? <polygon points={star(8, 8, 8)} fill={g.color} /> : <circle cx="8" cy="8" r="6" fill={g.color} />}
+        </svg>
+        {g.label}
+      </li>
+    ))}
+  </ul>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .usmap { margin: 18px 0; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 12px 14px; }
+  svg { display: block; width: 100%; height: auto; }
+  .land { fill: #efe6d3; }
+  .borders { fill: none; stroke: #fff; stroke-width: 1.2; stroke-linejoin: round; }
+  .mark { stroke: #fff; stroke-width: 2; }
+  .pt:hover .mark { stroke: var(--navy); }
+  text { font-size: 19px; font-weight: 700; fill: var(--ink); paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+  .legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 8px 4px 0; font-size: 0.9rem; color: var(--ink); }
+  .legend li { display: flex; align-items: center; gap: 6px; }
+  .legend svg { width: 16px; height: 16px; }
+  @media (max-width: 600px) {
+    text { font-size: 30px; stroke-width: 6px; }
+    text.minor { display: none; }
+    .mark { stroke-width: 3; }
+  }
+  figcaption { font-size: 0.85rem; color: var(--muted); margin: 6px 4px 0; }
+</style>

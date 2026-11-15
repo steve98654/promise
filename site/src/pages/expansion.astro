@@ -7,6 +7,7 @@ import Draft from '../components/Draft.astro';
 import sites from '../data/sites.json';
 import meta from '../data/expansion_meta.json';
 import { docs } from '../data/links';
+import USMap from '../components/USMap.astro';
 
 type Site = (typeof sites)[number];
 const blank = (v: unknown) => v === '' || v === null || v === undefined;
@@ -50,6 +51,8 @@ const siteByCity = (c: string) => sites.find((s) => s.city === c);
     <div class="stat"><div class="num">{focusCounts('Native')}</div><div class="lbl">Native American sites</div></div>
     <div class="stat"><div class="num">{focusCounts('Hispanic')}</div><div class="lbl">sites focused on Hispanic families</div></div>
   </div>
+
+  <USMap caption="Hover over a dot for the city and its wave; every site is listed in the table below. Positions are approximate." />
 
   <section class="block">
     <h2>How cities were chosen</h2>
