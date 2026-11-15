@@ -2,7 +2,7 @@
   // Cloudflare Worker for wepromise.school.
   // The Worker runs before every request (run_worker_first) and checks the
   // password before serving the built Astro site from ./site/dist.
-  "name": "wepromise",
+  "name": "promise",
   "main": "worker/index.js",
   "compatibility_date": "2026-11-01",
   "assets": {
